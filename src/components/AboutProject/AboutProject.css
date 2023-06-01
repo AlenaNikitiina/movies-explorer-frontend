@@ -1,6 +1,12 @@
 .about-project {
+  padding: 110px 0;
+}
+/*сделать грид*/
+
+.about-project__text {
   max-width: 1280px;
-  padding: 110px 70px;
+  width: calc(100% - 2 *70px );
+  margin: 0 auto;
 }
 
 .about-project__description {
@@ -22,12 +28,16 @@
   padding-bottom: 23px;
   border-bottom: 1px solid black;
   max-height: 27px;
+}
 
+.about-project__list{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
 
 .about-project__subtitle {
-  padding-top: 70px;
-  margin: 0;
+  margin: 70px 0 0;
   font-weight: 400;
   max-height: 24px;
   max-width: 550px;
@@ -35,12 +45,10 @@
   line-height: 24px;
   letter-spacing: -0.04em;
   text-align: left;
-
 }
 
-.section__pharagraph {
-  margin: 0;
-  padding-top: 26px;
+.about-project__pharagraph {
+  margin: 26px 0 0;
   max-height: 40px;
   max-width: 550px;
   font-size: 14px;
@@ -51,8 +59,10 @@
 
 .about-project__table {
   display: grid;
-  grid-template-columns: minmax(100px, 228px) 1fr;
-  margin-top: 110px;
+  max-width: 1140px;
+  width: calc(100% - 2 * 70px);
+  grid-template-columns: minmax(140px, 228px) 1fr;
+  margin: 110px auto 0;
 }
 
 .about-project__back {
@@ -78,4 +88,51 @@
   padding-top: 14px;
   color: #A0A0A0;
   background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+
+  .about-project {
+    padding: 90px 0px;
+  }
+  .about-project__text {
+    width: calc(100% - 2 * 50px);
+  }
+  .about-project__pharagraph {
+    font-size: 12px;
+    margin: 22px 0 0;
+    line-height: 18px;
+  }
+  .about-project__description {
+    gap: 30px;
+  }
+  .about-project__table {
+    width: calc(100% - 2 * 50px);
+    grid-template-columns: 140px 1fr;
+  }
+
+  @media screen and (max-width: 320px){
+    .about-project {
+      padding: 70px 0;
+    }
+    .about-project__description {
+      display: flex;
+      flex-direction: column;
+    }
+    .about-project__subtitle {
+      font-size: 18px;
+      margin: 60px 0 0;
+    }
+    .about-project__pharagraph {
+      font-size: 11px;
+      max-width: 16px 0 0;
+    }
+    .section__title {
+      font-size: 18px;
+    }
+    .about-project__table {
+      margin: 60px auto 0;
+      grid-template-columns: 100px 1fr;
+    }
+  }
 }
