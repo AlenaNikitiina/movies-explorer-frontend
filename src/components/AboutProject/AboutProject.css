@@ -1,21 +1,11 @@
 .about-project {
   padding: 110px 0;
 }
-/*сделать грид*/
 
 .about-project__text {
   max-width: 1280px;
-  width: calc(100% - 2 *70px );
+  width: calc(100% - 2 * 70px );
   margin: 0 auto;
-}
-
-.about-project__description {
-  display: flex;
-  flex-direction: row;
-  gap: 120px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .section__title {
@@ -30,14 +20,17 @@
   max-height: 27px;
 }
 
-.about-project__list{
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
+.about-project__description {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  1fr 1fr;
+  column-gap: 30px;
+  margin: 70px 0 0;
+  padding: 0;
 }
 
 .about-project__subtitle {
-  margin: 70px 0 0;
+  margin: 0;
   font-weight: 400;
   max-height: 24px;
   max-width: 550px;
@@ -90,10 +83,18 @@
   background-color: white;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
+  .about-project__description{
+    row-gap: 20px;
+  }
+}
 
+@media screen and (max-width: 768px) {
   .about-project {
     padding: 90px 0px;
+  }
+  .about-project__description {
+    row-gap: 20px;
   }
   .about-project__text {
     width: calc(100% - 2 * 50px);
@@ -103,21 +104,17 @@
     margin: 22px 0 0;
     line-height: 18px;
   }
-  .about-project__description {
-    gap: 30px;
-  }
   .about-project__table {
     width: calc(100% - 2 * 50px);
     grid-template-columns: 140px 1fr;
   }
 
-  @media screen and (max-width: 320px){
+  @media screen and (max-width: 570px){
     .about-project {
       padding: 70px 0;
     }
     .about-project__description {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: 1fr;
     }
     .about-project__subtitle {
       font-size: 18px;

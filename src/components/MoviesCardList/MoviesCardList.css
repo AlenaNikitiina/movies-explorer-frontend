@@ -1,0 +1,26 @@
+.cards {
+  padding: 70px 0 70px;
+}
+
+.cards__content {
+  margin: o auto;
+  max-width: 1280px;
+  width: calc(100% - 2 * 70px);
+}
+
+.cards__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+}
+
+.cards__btn {
+
+}
+
+.button {
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: opacity .3s linear;
+}

@@ -1,0 +1,29 @@
+.card__info {
+  max-width: 360px;
+  max-height: 320px;
+}
+
+.card__title {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.card__duration {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: #A0A0A0;
+}
+
+.card__link {
+
+}
+
+.card__save {
+  
+}
