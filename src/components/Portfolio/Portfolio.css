@@ -1,5 +1,11 @@
 .portfolio {
-  padding: 0px 70px 125px;
+  padding: 0 0 125px;
+}
+
+.portfolio__content {
+  width: calc(100% - 2 * 70px);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .portfolio__title {
@@ -29,4 +35,29 @@
   letter-spacing: -0.04em;
   text-align: left;
 
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding: 0 0 90px;
+  }
+  .portfolio__content {
+    width: calc(100% - 2 * 50px);
+  }
+  .portfolio__item {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .portfolio {
+    padding: 0 0 70px;
+  }
+  .portfolio__content {
+    width: calc(100% - 2 * 14px);
+  }
+  .portfolio__item {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
