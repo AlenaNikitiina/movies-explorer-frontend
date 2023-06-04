@@ -115,6 +115,7 @@
     }
     .about-project__description {
       grid-template-columns: 1fr;
+      margin: 0;
     }
     .about-project__subtitle {
       font-size: 18px;
