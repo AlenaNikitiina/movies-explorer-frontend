@@ -19,9 +19,9 @@ export default function PopupWithForm ({ name, title, children, buttonText, link
         /* {`form-${formName}`}*/
         action=''
         onSubmit={handleSubmit}
-      >
-      {children}
-      <button className='popup__button button' type='submit' >{buttonText}</button>
+        >
+        {children}
+        <button className='popup__button button' type='submit' >{buttonText}</button>
       </form>
 
       <p className='popup__question'>{question}&nbsp;

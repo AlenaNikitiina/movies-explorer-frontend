@@ -48,6 +48,12 @@
   letter-spacing: 0em;
 }
 
+@media screen and (max-width: 768px) {
+  .popup {
+    padding: 232px 0px;
+  }
+}
+
 @media screen and (max-width: 520px) {
   .popup {
     padding: 56px 0px;

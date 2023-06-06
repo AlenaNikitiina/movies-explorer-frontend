@@ -8,6 +8,7 @@ import Register from '../Register/Register';
 // import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { BrowserRouter } from 'react-router-dom';
 import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <SearchForm />
         <Register />
         <Login />
+        <Profile />
       </BrowserRouter>
     </div>
   )
