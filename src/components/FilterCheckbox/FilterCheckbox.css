@@ -1,0 +1,16 @@
+.checkbox {
+  padding: 42px 0 0 0;
+}
+
+.checkbox__content {
+
+}
+
+.checkbox__text {
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 70px;
+  border-bottom: 1px solid #E8E8E8;
+  text-align: center;
+
+}

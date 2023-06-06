@@ -2,18 +2,25 @@ import React from 'react';
 import './App.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import NotFound from '../NotFound/NotFound';
 import Main from '../Main/Main';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import SearchForm from '../SearchForm/SearchForm';
+import Register from '../Register/Register';
+// import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { BrowserRouter } from 'react-router-dom';
+import Login from '../Login/Login';
+
 
 export default function App() {
   return (
     <div className='app'>
-      <Header />
-      <Main />
-      <Footer />
-      <NotFound />
-      
+      <BrowserRouter>
+        <Header />
+        <Main />
+        <Footer />
+        <SearchForm />
+        <Register />
+        <Login />
+      </BrowserRouter>
     </div>
   )
 
