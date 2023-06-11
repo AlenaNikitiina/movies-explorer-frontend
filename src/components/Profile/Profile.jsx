@@ -6,6 +6,10 @@ export default function Profile() {
     evt.preventDefault();
   }
 
+  const handleEditButton = (evt) => {
+    evt.preventDefault();
+  }
+
   return(
     <section className="profile">
       <h1 className="profile__title">Привет, Алёна!</h1>
@@ -26,7 +30,7 @@ export default function Profile() {
           <span className="form__error" id="email-error" />
         </div>
       
-        <button className="profile__edit-button button" type="button">Редактировать</button>
+        <button className="profile__edit-button button" type="button" onClick={handleEditButton}>Редактировать</button>
         <Link to='/' className="profile__link link" type="">Выйти из аккаунта</Link>
       
       </form>

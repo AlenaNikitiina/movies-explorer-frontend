@@ -4,16 +4,18 @@ import './MoviesCardList.css';
 
 export default function MoviesCardList({ movies }) {
 
-  return(
+  return( 
     <section className='cards'>
       <div className='cards__content'>
-        <ul className='card__list'>
-          {movies.map((movie) => (
-            <MoviesCard
-              key={movie.id}
-              movie={movie}
-            />
-          ))}
+        <ul className='cards__list'>
+          {movies.map(movie => {
+            return (
+              <MoviesCard
+                movie={movie}
+                key={movie.id}
+                image={movie.image}
+              />)
+          })}
         </ul>
       </div>
       <button className='cards__btn button' type='button'>Ещё</button>

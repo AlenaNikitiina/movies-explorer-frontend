@@ -23,19 +23,15 @@
 
 .profile__input {
   width: 100%;
-  padding: 5px 0 10px;
+  padding: 0 0 16px;
   border: none;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #E8E8E8;
+
+
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   letter-spacing: 0em;
-  text-align: left;
-}
-
-.profile__input:last-of-type {
-  border-bottom: 1px solid red;
+  text-align: right;
 }
 
 .profile__cell {
@@ -45,6 +41,10 @@
   gap: 10px;
   padding: 0;
   align-items: baseline;
+}
+
+.profile__cell:not(:first-of-type) {
+  border-bottom: 1px solid red;
 }
 
 .profile__label {

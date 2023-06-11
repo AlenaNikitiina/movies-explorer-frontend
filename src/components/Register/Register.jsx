@@ -18,7 +18,7 @@ export default function Register() {
     >
       <section className='register'>
         <label className="form__label" htmlFor='name'>Имя
-          <input className="form__input" type="text" name="name" id="name" required />
+          <input className="form__input" type="text" name="name" id="name" required minLength={2} maxLength={30}/>
           <span className="form__error" id="name-error" />
         </label>
 
