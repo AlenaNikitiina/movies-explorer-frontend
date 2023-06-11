@@ -2,7 +2,7 @@ import './MoviesCard.css';
 
 export default function MoviesCard({ movie }) {
   const { nameRU, duration, trailerLink, image } = movie;
-  console.log(movie);
+  const imageSource = 'https://api.nomoreparties.co';
 
   return (
     <li className='card__element'>
@@ -19,7 +19,7 @@ export default function MoviesCard({ movie }) {
         >
           <img
             className='card__photo'
-            src={image}
+            src={`${imageSource}${image.url}`}
             alt={nameRU}
           />
         </a>
