@@ -1,5 +1,5 @@
 .cards {
-  padding: 70px 0 70px;
+  padding: 70px 0 80px;
   display: flex;
   flex-direction: column;
 }
@@ -28,21 +28,17 @@
 }
 
 .cards__btn {
-  margin: 50px auto 80px;
+  display: block;
+  margin: 50px auto 0;
   width: 100%;
-  padding: 11px 0 9px;
+  padding: 11px 0 10px;
   max-width: 320px;
-  
   border-radius: 3px;
-  border: none;
+  border: 1px solid #E8E8E8;
   font-size: 12px;
   font-weight: 500;
   line-height: 15px;
-  letter-spacing: 0px;
-  text-align: center;
-  background: #E8E8E8;
-  display: block;
-
+  background-color: transparent;
 }
 
 @media screen and (max-width: 1024px) {

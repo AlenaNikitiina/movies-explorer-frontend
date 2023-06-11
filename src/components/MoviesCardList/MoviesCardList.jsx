@@ -17,9 +17,10 @@ export default function MoviesCardList({ movies }) {
               />)
           })}
         </ul>
+        <button className='cards__btn button' type='button'>Ещё</button>
       </div>
       
-      <button className='cards__btn button' type='button'>Ещё</button>
+      
     </section>
   )
 }
