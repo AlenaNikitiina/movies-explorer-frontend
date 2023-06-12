@@ -1,6 +1,6 @@
 .techs {
   padding: 100px 0;
-  background-color: #F5F5F5;
+  background-color: var(--grey);
 }
 
 .techs__content {
@@ -48,7 +48,7 @@
   width: 90px;
   height: 60px;
   font-size: 14px;
-  background-color: #E8E8E8;
+  background-color: var(--dark-grey);
   border-radius: 10px;
 }
 

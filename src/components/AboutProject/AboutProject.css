@@ -16,7 +16,7 @@
   font-weight: 400;
   text-align: left;
   padding-bottom: 23px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--black);
   max-height: 27px;
 }
 
@@ -59,12 +59,12 @@
 }
 
 .about-project__back {
-  background-color: black;
-  color: white;
+  background-color: var(--black);
+  color: var(--white);
 }
 
 .about-project__front {
-  background-color: #F2F2F2;
+  background-color: var(--light-grey);
 }
 
 .about-project__table-text {
@@ -78,8 +78,8 @@
 
 .about-project__caption {
   padding-top: 14px;
-  color: #A0A0A0;
-  background-color: white;
+  color: var(--text-grey);
+  background-color: var(--white);
 }
 
 @media screen and (max-width: 1024px) {

@@ -13,30 +13,12 @@ export default function MoviesCardList({ movies }) {
               <MoviesCard
                 movie={movie}
                 key={movie.id}
-                image={movie.image}
               />)
           })}
         </ul>
+      
         <button className='cards__btn button' type='button'>Ещё</button>
       </div>
-      
-      
     </section>
   )
 }
-
-/*
-{cards.map(card => {
-  return (
-    <Card
-      card={card}
-      key={card._id}
-      name={card.name}
-      link={card.link}
-      likes={card.likes}
-      onCardClick={onCardClick}
-      onCardLike={onCardLike}
-      onClickDeleteCard={onClickDeleteCard}
-    />)
-})}
-*/

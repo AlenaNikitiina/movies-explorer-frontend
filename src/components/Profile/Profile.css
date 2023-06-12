@@ -44,7 +44,7 @@
 }
 
 .profile__cell:not(:first-of-type) {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid var(--scarlet);
 }
 
 .profile__label {
@@ -74,7 +74,7 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0px;
-  color: #FF4062;
+  color: var(--scarlet);
 }
 
 @media screen and (max-width: 768px) {

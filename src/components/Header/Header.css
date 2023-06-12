@@ -1,6 +1,6 @@
 .header {
   padding: 18px 0;
-  background-color: rgba(243, 193, 248, 1);
+  background-color: var(--preview-color);
 }
 
 .header__content {

@@ -25,6 +25,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/sign-up" element={<Header />}></Route>
+
           <Route path='/' element={
             <>
               <Header />
@@ -64,8 +65,3 @@ export default function App() {
   )
 
 }
-// <MoviesCardList />
-/* 
-<SearchForm />
-
-*/

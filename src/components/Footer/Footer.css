@@ -15,8 +15,8 @@
   letter-spacing: 0px;
   text-align: center;
   padding-bottom: 20px;
-  border-bottom: 1px solid #E8E8E8;
-  color: #A0A0A0;
+  border-bottom: 1px solid var(--dark-grey);
+  color: var(--text-grey);
 }
 
 .footer__copyright {

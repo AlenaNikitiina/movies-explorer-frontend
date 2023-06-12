@@ -9,7 +9,32 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
-  background-color: white;
-  color: black;
+  background-color: var(--white);
+  color: var(--black);
   border: 1px solid red;
 }
+
+:root {
+  --preview-color: rgba(243, 193, 248, 1);
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey: #F5F5F5;
+  --light-grey: #F2F2F2;
+  --dark-grey: #E8E8E8;
+  --text-grey: #A0A0A0;
+  --movie-grey: #F9F9F9;
+  --neon-green: #2BE080;
+  --border-color: #E8E8E8;
+  --scarlet: #FF4062;
+
+}
+
+/*  var(--black)   */
+/*  var(--white)   */
+
+/*  var(--dark-grey)   */
+
+/*  var(--text-grey)   */
+
+/*  var(--movie-grey)   */
+/*  var(--border-color)   */

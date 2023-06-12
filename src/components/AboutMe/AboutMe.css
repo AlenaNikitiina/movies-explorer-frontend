@@ -59,7 +59,7 @@
 
 .link {
   text-decoration: none;
-  color: black;
+  color: var(--black);
 }
 
 .about-me__link {

@@ -1,6 +1,6 @@
 .promo {
   padding: 75px 0 75px;
-  background-color: rgba(243, 193, 248, 1);
+  background-color: var(--preview-color);
 }
 
 .promo__content {

@@ -28,8 +28,8 @@
 
 .popup__button {
   margin: 135px 0 0;
-  background-color: black;
-  color: white;
+  background-color: var(--black);
+  color: var(--white);
   padding: 13px 0 15px;
 }
 
@@ -39,7 +39,7 @@
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0em;
-  color: #A0A0A0;
+  color: var(--text-grey);
 }
 
 .popup__link {
