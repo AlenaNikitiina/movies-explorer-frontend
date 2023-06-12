@@ -60,6 +60,7 @@
 .link {
   text-decoration: none;
   color: var(--black);
+  transition: opacity .3s linear;
 }
 
 .about-me__link {
