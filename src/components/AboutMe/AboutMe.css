@@ -61,6 +61,11 @@
   text-decoration: none;
   color: var(--black);
   transition: opacity .3s linear;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 0.7;
 }
 
 .about-me__link {

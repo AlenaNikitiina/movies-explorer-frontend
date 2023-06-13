@@ -1,6 +1,26 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../images/logo.svg';
+import Navigation from '../Navigation/Navigation';
 
+export default function Header({ loggedIn }) {
+  return (
+    <section className={ loggedIn ? 'header_white' : 'header' } >
+      <div className='header__content'>
+        
+        <Link to="/" className='header__logo'>
+          <img alt='Лого проекта' src={logo} />
+        </Link>
+
+        <Navigation loggedIn={loggedIn} />
+      </div>
+    </section>
+  )
+}
+
+
+/*
 export default function Header() {
   return (
     <section className='header'>
@@ -8,6 +28,7 @@ export default function Header() {
         <a className='header__logo' href='/'>
           <img alt='Лого проекта' src={logo}/>
         </a>
+
         <ul className='nav-tab'>
           <li>
             <a className='nav-tab__item link' href='/signup'>Регистрация</a>
@@ -19,6 +40,43 @@ export default function Header() {
       </div>
     </section>
   )
-
 }
-//link make
+
+*/
+
+
+/* сложно
+import './Header.css';
+import logo from '../../images/logo.svg';
+import NavTabMain from '../NavTabMain/NavTabMain';
+import Navigation from '../Navigation/Navigation';
+
+export default function Header({ isLoggedIn, onOpenBurgerPopup }) {
+  return (
+    <section className='header'>
+      <div className='header__content'>
+        <a className='header__logo' href='/'>
+          <img src={logo} alt='Лого проекта' />
+        </a>
+
+        {isLoggedIn ? <Navigation onOpenBurgerPopup={onOpenBurgerPopup} /> : <NavTabMain />}
+      </div>
+    </section>
+  )
+}
+*/
+
+
+/*
+
+export default function Header({ loggedIn }) {
+  return (
+    <header className="header">
+      <Link to="/">
+        <img src={logo} alt="Логотип" className="header__logo" />
+      </Link>
+      <Navigation loggedIn={loggedIn} />
+    </header>
+  );
+};
+*/

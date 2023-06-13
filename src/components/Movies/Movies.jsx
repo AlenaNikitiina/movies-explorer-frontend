@@ -3,10 +3,13 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 import movies from '../../utils/movieDatabase';
-// console.log(movies[0]);
+import Header from '../Header/Header';
 
 export default function Movies () {
-  const handleSubmitSearch = () => {};
+
+  const handleSubmitSearch = () => {
+    console.log('hi');
+  };
 
   return (
     <main>
@@ -14,4 +17,4 @@ export default function Movies () {
       <MoviesCardList movies={movies} />
     </main>
   )
-};
+}

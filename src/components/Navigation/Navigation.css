@@ -1,0 +1,107 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+}
+
+.navigation__link {
+  margin-right: 20px;
+  line-height: 18px;
+  letter-spacing: 0em;
+}
+
+.navigation__link_active {
+  font-weight: 500;
+  margin-right: 20px;
+  line-height: 18px;
+  letter-spacing: 0em;
+}
+
+.navigation__link:last-of-type,
+.navigation__link_active:last-of-type {
+  margin-right: 0;
+}
+
+.navigation__account-btn {
+  margin-left: 50px;
+  width: 100px;
+  padding: 8px 10px;
+  background-color: transparent;
+  background-image: url(../../images/account_button.svg);
+  background-position: 12% 50%;
+  background-repeat: no-repeat;
+  background-size: 12px 14px;
+  border: 2px solid var(--light-grey);
+  border-radius: 20px;
+  text-align: right;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+  cursor: pointer;
+  transition: opacity .3s linear;
+}
+
+.navigation__account:hover,
+.navigation__burger-btn:hover {
+  opacity: 0.7;
+}
+
+/**/
+.nav-tab {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.nav-tab__item {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+.nav-tab__item_active {
+  padding: 8px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  background-color: var(--black);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+  transition: opacity .3s linear;
+}
+
+.navigation__burger-btn {
+  background: none;
+  background-image: url('../../images/bur.png');
+  width: 44px;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+  display: none;
+  transition: opacity .3s linear;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__content,
+  .navigation__account-btn {
+    display: none;
+  }
+  .navigation__burger-btn {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navigation__link {
+    margin-right: 14px;
+  }
+}

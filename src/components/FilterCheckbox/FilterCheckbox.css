@@ -11,9 +11,7 @@
   display: inline-block;
 }
 
-.checkbox__input {
-  display: none;
-}
+.checkbox__input {display: none;}
 
 .checkbox__text {
   margin: 0 45px 0;
