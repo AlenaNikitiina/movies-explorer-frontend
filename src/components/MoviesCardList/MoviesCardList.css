@@ -29,7 +29,7 @@
 
 .cards__btn {
   display: block;
-  margin: 50px auto 0;
+  margin: 80px auto 0;
   width: 100%;
   padding: 11px 0 10px;
   max-width: 320px;
@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 425px) {
   .cards {
-    padding: 40px 0 40px;
+    padding: 20px 0 40px;
   }
   .cards__content {
     width: calc(100% - 2 * 10px);
@@ -65,6 +65,8 @@
   .cards__list {
     grid-template-columns: repeat(auto-fit, 300px);
     row-gap: 16px;
-
+  }
+  .cards__btn{
+    margin: 80px auto 0;
   }
 }

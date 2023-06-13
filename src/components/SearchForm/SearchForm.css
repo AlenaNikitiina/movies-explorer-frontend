@@ -1,5 +1,5 @@
 .search-form {
-  padding: 60px 0 40px;
+  padding: 60px 0 38px;
 }
 
 .search-form__content {
@@ -41,7 +41,7 @@
 
 @media screen and (max-width: 768px) {
   .search-form {
-    padding: 80px 0 30px;
+    padding: 80px 0 45px;
   }
   .search-form__content {
     width: calc(100% - 2 * 30px);
@@ -49,6 +49,9 @@
 }
 
 @media screen and (max-width: 425px) {
+  .search-form {
+    padding: 80px 0 0;
+  }
   .search-form__content {
     width: calc(100% - 2 * 10px);
   }

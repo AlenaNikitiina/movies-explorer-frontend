@@ -33,7 +33,7 @@
 .promo__pharagraph {
   max-width: 310px;
   max-height: 32px;
-  margin: 36px auto 145px 0px;
+  margin: 54px auto 130px 0px;
   font-size: 13px;
   line-height: 16px;
   letter-spacing: 0px;
@@ -60,6 +60,9 @@
 }
 
 @media screen and (max-width: 870px) {
+  .promo {
+    padding: 140px 0 75px;
+  }
   .promo__content {
     width: calc(100% - 2 * 44px);
     grid-template-columns: 1fr;
@@ -72,10 +75,12 @@
   }
   .promo__title {
     margin: 48px auto 22px;
-    font-size: 30px;
-    max-width: 540px;
+    max-width: 680px;
     max-height: 100px;
     text-align: center;
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: 0px;
   }
   .promo__pharagraph {
     margin: 0 auto 92px;
@@ -89,25 +94,29 @@
   }
  }
 
-  @media screen and (max-width: 510px) {
-    .promo {
-      padding: 70px 0 30px;
-    }
-    .promo__content {
-      min-width: 320px;
-      display: flex;
-      flex-direction: column;
-      margin: 0 auto;
-    }
-    .promo__title {
-      margin: 44px auto 24px;
-      line-height: 38px;
-    }
-    .promo__pharagraph {
-      margin: 0 auto 80px;
-    }
-    .promo__img {
-      width: 210px;
-      height: 206px;
-    }
+@media screen and (max-width: 510px) {
+  .promo {
+    padding: 70px 0 30px;
   }
+  .promo__content {
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .promo__title {
+    margin: 44px auto 40px;
+    line-height: 38px;
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -0.04em;
+    text-align: center;
+  }
+  .promo__pharagraph {
+    margin: 0 auto 80px;
+  }
+  .promo__img {
+    width: 210px;
+    height: 206px;
+  }
+}

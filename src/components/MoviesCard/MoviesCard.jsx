@@ -1,15 +1,20 @@
+import { useState } from 'react';
 import './MoviesCard.css';
 
 export default function MoviesCard({ movie }) {
   const { nameRU, duration, trailerLink, image } = movie;
-  const imageSource = 'https://api.nomoreparties.co';
+  const imageSource = 'https://api.nomoreparties.co'; // пока не связан с беком
+
+  const [isSaved, setIsSaved] = useState(false); // сохранен ли фильм
+  const handleSaveMovie = () => setIsSaved(true);
+  const handleDeleteMovie = () => setIsSaved(false);
 
   return (
     <li className='card__element'>
       
         <div className='card__info'>
           <p className='card__title'>{nameRU}</p>
-          <p className='card__duration'>{duration}</p>
+          <p className='card__duration'>{`${duration}${' минут'}`}</p>
         </div>
       
         <a
@@ -25,11 +30,14 @@ export default function MoviesCard({ movie }) {
         </a>
       
         <button
-          className='card__save button'
+          className={ isSaved ? 'card__delete-btn' : 'card__save-btn'}
+          onClick={isSaved ? handleDeleteMovie : handleSaveMovie}
+          aria-label='сохранить фильм'
           type='button'>
-          Сохранить
         </button>
 
     </li>
   )
 }
+
+// className='card__saved-btn button'

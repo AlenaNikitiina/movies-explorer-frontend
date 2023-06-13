@@ -25,7 +25,7 @@
 }
 
 .navigation__account-btn {
-  margin-left: 50px;
+  margin-left: 30px;
   width: 100px;
   padding: 8px 10px;
   background-color: transparent;
@@ -103,5 +103,21 @@
 @media screen and (max-width: 425px) {
   .navigation__link {
     margin-right: 14px;
+  }
+  .nav-tab {
+    gap: 14px;
+  }
+  .nav-tab__item {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+  }
+  .nav-tab__item_active {
+    padding: 5px 12px;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
   }
 }

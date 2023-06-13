@@ -46,11 +46,11 @@
   line-height: 22px;
   letter-spacing: 0px;
   text-align: left;
-
 }
 
 .about-me__photo {
   max-width: 270px;
+  width: 100%;
   max-height: 327px;
   border-radius: 10px;
   display: block;
@@ -123,6 +123,7 @@
   .about-me__name {
     font-size: 30px;
     line-height: 36px;
+    margin: 40px 0 0;
   }
   .about-me__profession {
     font-size: 11px;
@@ -131,8 +132,16 @@
   }
   .about-me__photo {
     align-self: center;
+    width: 292px;
+    height: 352px;
   }
   .about-me__link {
     margin: 40px 0 0;
+  }
+  .about-me__text{
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  text-align: left;
   }
 }
