@@ -8,18 +8,21 @@ export default function Portfolio() {
         <ul className='portfolio__list'>
           <li>
             <a className='portfolio__item link' href='https://github.com/AlenaNikitiina/how-to-learn' target='blank'>
-              Статичный сайт<span className='portfolio__arrow'>↗</span></a>
+              Статичный сайт
+              <span className='portfolio__span'>↗</span></a>
           </li>
           <li>
             <a className='portfolio__item link' href='https://alenanikitiina.github.io/russian-travel/' target='blank'>
-              Адаптивный сайт<span className='portfolio__arrow'>↗</span></a>
+              Адаптивный сайт
+              <span className='portfolio__span'>↗</span></a>
           </li>
           <li>
             <a className='portfolio__item link' href='https://nikitina.nomoredomains.monster' target='blank'>
-              Одностраничное приложение<span className='portfolio__arrow'>↗</span></a>
+              Одностраничное приложение
+              <span className='portfolio__span'>↗</span></a>
           </li>
       </ul>
       </div>
-  </section>
+    </section>
   )
 }

@@ -12,7 +12,6 @@
   font-weight: 400;
   background-color: var(--white);
   color: var(--black);
-  border: 1px solid red;
 }
 
 :root {
@@ -27,15 +26,4 @@
   --neon-green: #2BE080;
   --border-color: #E8E8E8;
   --scarlet: #FF4062;
-
 }
-
-/*  var(--black)   */
-/*  var(--white)   */
-
-/*  var(--dark-grey)   */
-
-/*  var(--text-grey)   */
-
-/*  var(--movie-grey)   */
-/*  var(--border-color)   */

@@ -15,25 +15,22 @@ export default function Profile() {
       <h1 className="profile__title">Привет, Алёна!</h1>
       <form
         className='profile__form'
-        action=''
         onSubmit={handleSubmit}
       >
-
         <div className="profile__cell">
           <label className="profile__label" htmlFor='name'>Имя</label>
-          <input className="profile__input" type="text" name="name" id="name" required />
+          <input className="profile__input" type="text" name="name" id="name" required placeholder="Alena"/>
           <span className="form__error" id="name-error" />
         </div>
 
         <div className="profile__cell">
           <label className="profile__label" htmlFor='email'>E-mail</label>
-          <input className="profile__input" type="email" name="email" id="email" required />
+          <input className="profile__input" type="email" name="email" id="email" required placeholder="pochta@yandex.ru" />
           <span className="form__error" id="email-error" />
         </div>
       
         <button className="profile__edit-button button" type="button" onClick={handleEditButton}>Редактировать</button>
-        <Link to='/' className="profile__link link" type="">Выйти из аккаунта</Link>
-      
+        <Link to='/' className="profile__link link">Выйти из аккаунта</Link>
       </form>
     </section>
   )

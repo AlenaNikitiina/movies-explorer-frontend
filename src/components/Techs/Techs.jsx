@@ -1,7 +1,6 @@
 import './Techs.css';
 
 export default function Techs() {
-
   return (
     <section className='techs'>
       <div className='techs__content'>
