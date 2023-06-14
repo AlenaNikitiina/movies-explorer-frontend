@@ -5,7 +5,7 @@ export default function Footer() {
     <section className='footer'>
       <div className='footer__content'>
         <p className='footer__sign'>Учебный проект Яндекс.Практикум х BeatFilm.</p>
-        <div className='footer__text'>
+        <nav className='footer__text'>
           <p className='footer__copyright'>&copy; 2020</p>
           <ul className='footer__list'>
             <li>
@@ -15,7 +15,7 @@ export default function Footer() {
               <a className='footer__link link' href='https://github.com/AlenaNikitiina' target='blank'>Github</a>
             </li>
           </ul>
-        </div>
+        </nav>
       </div>
     </section>
   )

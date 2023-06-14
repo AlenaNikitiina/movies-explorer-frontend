@@ -30,7 +30,7 @@ export default function MoviesCard({ movie }) {
         </a>
       
         <button
-          className={ isSaved ? 'card__delete-btn' : 'card__save-btn'}
+          className={ isSaved ? 'card__delete-btn button' : 'card__save-btn button'}
           onClick={isSaved ? handleDeleteMovie : handleSaveMovie}
           aria-label='сохранить фильм'
           type='button'>

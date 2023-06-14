@@ -3,7 +3,6 @@
   flex-direction: column;
   border-radius: 6px;
   box-shadow: 0px 4px 30px 0px #00000014;
-
   width: 100%;
   height: fit-content;
 }
@@ -49,6 +48,7 @@
   aspect-ratio: 16/9;
 }
 
+/* кнопки сохранить, сохранено, удалить */
 .card__save-btn {
   width: 100px;
   height: 29px;

@@ -9,11 +9,11 @@ export default function Promo() {
         <div className="promo__text">
           <h1 className="promo__title">Учебный проект студента факультета Веб-разработки.</h1>
           <p className="promo__pharagraph">Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
-          <button className="promo__button button">Узнать больше</button>
+          <a href="https://practicum.yandex.ru/" target='blank'>
+            <button className="promo__button button">Узнать больше</button>
+          </a>
         </div>
-        
       </div>
     </section>
   )
-
 }

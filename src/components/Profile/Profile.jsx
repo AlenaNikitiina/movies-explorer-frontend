@@ -13,7 +13,8 @@ export default function Profile() {
   return(
     <section className="profile">
       <h1 className="profile__title">Привет, Алёна!</h1>
-      <form className='profile__form'
+      <form
+        className='profile__form'
         action=''
         onSubmit={handleSubmit}
       >

@@ -3,7 +3,6 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useState } from 'react';
 
 export default function SearchForm() {
-
   const [isСheck, setIsСheck] = useState(false);
 
   return(

@@ -35,7 +35,7 @@ export default function Navigation({ loggedIn }) {
 
       { loggedIn && !isBurgerOpen
       ? (
-        <button className='navigation__burger-btn' onClick={toggleBurger} />
+        <button className='navigation__burger-btn button' onClick={toggleBurger} />
       ) : (
         <BurgerMenu onClose={toggleBurger} loggedIn={loggedIn} />
       )}

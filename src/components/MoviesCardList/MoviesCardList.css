@@ -27,6 +27,10 @@
   transition: opacity .3s linear;
 }
 
+.button:hover {
+  opacity: 0.7;
+}
+
 .cards__btn {
   display: block;
   margin: 80px auto 0;
