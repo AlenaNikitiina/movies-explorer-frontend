@@ -10,14 +10,11 @@ export default function BurgerMenu({ onClose, loggedIn }) {
 
         <div className='burger__content'>
           <button
-            className='burger-close button'
+            className='burger__close-btn button'
             type='button'
             aria-label='закрыть меню'
             onClick={() => onClose()}
-          >
-          
-          </button>
-          <span className='burger__line' />
+          />
         
           <div className='burger__list'>
             <Link to='/' className={location.pathname === '/'                         ? 'burger__link_active' : 'burger__link'}>Главная</Link>
@@ -26,11 +23,10 @@ export default function BurgerMenu({ onClose, loggedIn }) {
           </div>
 
           <Link to='/profile'>
-            <button className='burger__account-btn button'>Аккаунт</button>
+            <button className='burger__account-btn'>Аккаунт</button>
           </Link>
         </div>
       </div>
-
     </div>
   )
 }
