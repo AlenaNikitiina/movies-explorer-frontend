@@ -31,6 +31,10 @@
   text-align: right;
 }
 
+.profile__input:focus {
+  outline-color: var(--preview-color);
+}
+
 .profile__cell {
   display: flex;
   flex-direction: row;

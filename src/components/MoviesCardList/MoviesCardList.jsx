@@ -4,7 +4,11 @@ import './MoviesCardList.css';
 
 export default function MoviesCardList({ movies }) {
 
-  return( 
+  const handleShowMore = () => {
+    console.log('Show More');
+  }
+
+  return(
     <section className='cards'>
       <div className='cards__content'>
         <ul className='cards__list'>
@@ -17,7 +21,7 @@ export default function MoviesCardList({ movies }) {
           })}
         </ul>
       
-        <button className='cards__btn button' type='button'>Ещё</button>
+        <button className='cards__btn button' type='button' onClick={handleShowMore}>Ещё</button>
       </div>
     </section>
   )

@@ -12,13 +12,13 @@ export default function Register() {
       title='Добро пожаловать!'
       onSubmit={handleSubmit}
       buttonText='Зарегистрироваться'
-      link='signin'
+      link='/signin'
       linkText='Войти'
       question='Уже зарегистрированы?'
     >
       <section className='register'>
         <label className='form__label' htmlFor='name'>Имя
-          <input className='form__input' type='text' name='name' id='name' required minLength={2} maxLength={30}/>
+          <input className='form__input' type='text' name='name' id='name' required minLength={2} maxLength={30} />
           <span className='form__error' id='name-error' />
         </label>
 
@@ -28,7 +28,7 @@ export default function Register() {
         </label>
 
         <label className='form__label' htmlFor='password'>Пароль
-          <input className='form__input' type='password' name='password' id='password' required />
+          <input className='form__input' type='password' name='password' id='password' required minLength={2} maxLength={30} />
           <span className='form__error' id='password-error' />
         </label>
       </section>

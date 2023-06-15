@@ -26,6 +26,10 @@
   text-align: left;
 }
 
+.form__input:focus {
+  outline-color: var(--preview-color);
+}
+
 .form__error {
   font-size: 10px;
   font-weight: 400;

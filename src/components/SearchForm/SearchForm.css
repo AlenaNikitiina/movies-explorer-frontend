@@ -28,6 +28,10 @@
   text-align: left;
 }
 
+.search-form__input {
+  outline-color: var(--preview-color);
+}
+
 .search-form__button {
   position: absolute;
   top: 5px;

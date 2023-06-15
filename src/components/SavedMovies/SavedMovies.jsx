@@ -7,6 +7,6 @@ export default function SavedMovies({ loggedIn }) {
     <main>
       <SearchForm />
       <MoviesCardList movies={movies} loggedIn={loggedIn} />
-  </main>
+    </main>
   )
 }

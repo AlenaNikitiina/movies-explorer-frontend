@@ -9,11 +9,11 @@ export default function Login() {
     <PopupWithForm
       name='login'
       title='Рады видеть!'
-      onSubmit={handleSubmit}
       buttonText='Войти'
-      link='signup'
+      link='/signup'
       linkText='Регистрация'
       question='Ещё не зарегистрированы?'
+      onSubmit={handleSubmit}
     >
       <section className='register'>
         <label className='form__label' htmlFor='email'>E-mail
@@ -22,7 +22,7 @@ export default function Login() {
         </label>
 
         <label className='form__label' htmlFor='password'>Пароль
-          <input className='form__input' type='password' name='password' id='password' required />
+          <input className='form__input' type='password' name='password' id='password' required minLength={2} maxLength={30} />
           <span className='form__error' id='password-error' />
         </label>
       </section>
