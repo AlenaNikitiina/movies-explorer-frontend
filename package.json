@@ -1,7 +1,13 @@
 {
   "name": "movies-explorer-frontend",
+  "author": "Alena Nikitina",
+  "description": "diploma project",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlenaNikitiina/movies-explorer-frontend.git"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
