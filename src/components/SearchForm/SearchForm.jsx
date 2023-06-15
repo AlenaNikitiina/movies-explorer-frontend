@@ -1,25 +1,35 @@
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
-import { useState } from 'react';
 
 export default function SearchForm() {
-  const [isСheck, setIsСheck] = useState(false);
+
+  const handleFormSubmit = (evt) => {
+    evt.preventDefault();
+    console.log('handleFormSubmit');
+  }
+
+  const handleChange = () => {
+    console.log('Change input');
+  }
 
   return(
     <section className='search-form'>
       <div className='search-form__content'>
-        <form className='search-form__form' name='search-form'>
-          <input
-            className='search-form__input'
-            name='search-input'
-            type='text'
-            placeholder='Фильм'
-            required
-          />
+        <form
+          className='search-form__form'
+          name='search-form'
+          onSubmit={handleFormSubmit}>
+            <input
+              className='search-form__input'
+              name='search-input'
+              type='text'
+              placeholder='Фильм'
+              required
+              onChange={handleChange}
+            />
           <button className='search-form__button button' type='submit'>Найти</button>
         </form>
-        
-        <FilterCheckbox isСheck={isСheck} setIsСheck={setIsСheck} />
+        <FilterCheckbox />
       </div>
     </section>
   )

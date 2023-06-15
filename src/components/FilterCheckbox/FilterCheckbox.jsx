@@ -1,53 +1,23 @@
 import './FilterCheckbox.css';
 
-export  default function FilterCheckbox({ isShort }) {
+export  default function FilterCheckbox() {
 
-  const setIsShot = (evt) => {
-    console.log('check')
+  const handleСheck = () => {
+    console.log('switch Checkbox');
   }
 
   return (
-    <div className='checkbox'>
-      <label className='checkbox__content'>
+    <div className='filter-checkbox'>
+      <label className='filter-checkbox__content'>
         <input
-          className='checkbox__input'
-          onClick={() => setIsShot(!isShort)}
+          className='filter-checkbox__input'
           type='checkbox'
-          checked={isShort}
+          /*checked={isСheck}*/
+          onChange={handleСheck}
         />
-        <span className='checkbox__switch'/>
-        <span className='checkbox__text'>Короткометражки</span>
+        <span className='filter-checkbox__switch'/>
+        <span className='filter-checkbox__text'>Короткометражки</span>
       </label>
     </div>
   )
 }
-
-/*
-import './FilterCheckbox.css';
-import { useState } from 'react';
-
-export default function FilterCheckbox({ isСheck, setIsСheck }) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleChange = () => {
-    setIsChecked(true);
-    console.log('check');
-  };
-
-  return(
-    <section className='checkbox'>
-      <div className='checkbox__content'>
-        <input
-          className='checkbox__input'
-          type='checkbox'
-          checked={isChecked}
-          onChange={handleChange}
-        />
-      
-        <span className='checkbox__switch' />
-        <span className='checkbox__text'>Короткометражки</span>
-      </div>
-    </section>
-  )
-}
-*/

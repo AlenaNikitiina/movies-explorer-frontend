@@ -8,11 +8,11 @@ export default function Header({ loggedIn }) {
   return (
     <section className={ loggedIn ? 'header_white' : 'header' } >
       <div className='header__content'>
-        
+      
         <Link to="/" className='header__logo'>
           <img alt='Лого проекта' src={logo} />
         </Link>
-
+      
         <Navigation loggedIn={loggedIn} />
       </div>
     </section>
@@ -42,41 +42,4 @@ export default function Header() {
   )
 }
 
-*/
-
-
-/* сложно
-import './Header.css';
-import logo from '../../images/logo.svg';
-import NavTabMain from '../NavTabMain/NavTabMain';
-import Navigation from '../Navigation/Navigation';
-
-export default function Header({ isLoggedIn, onOpenBurgerPopup }) {
-  return (
-    <section className='header'>
-      <div className='header__content'>
-        <a className='header__logo' href='/'>
-          <img src={logo} alt='Лого проекта' />
-        </a>
-
-        {isLoggedIn ? <Navigation onOpenBurgerPopup={onOpenBurgerPopup} /> : <NavTabMain />}
-      </div>
-    </section>
-  )
-}
-*/
-
-
-/*
-
-export default function Header({ loggedIn }) {
-  return (
-    <header className="header">
-      <Link to="/">
-        <img src={logo} alt="Логотип" className="header__logo" />
-      </Link>
-      <Navigation loggedIn={loggedIn} />
-    </header>
-  );
-};
 */
