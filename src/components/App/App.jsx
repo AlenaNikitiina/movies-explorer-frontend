@@ -17,9 +17,7 @@ import NotFound from '../NotFound/NotFound';
 
 export default function App() {
   // временно <Header loggedIn={true} />
-  
   const [loggedIn, setLoggedIn] = useState(false);
-  //const [menuBurgetActiv, setMenuBurgetActiv] = useState(false)
   //const [renderLoading, setRenderLoading] = useState(false) // идет сохранение/ загрузка
 
   return (
@@ -66,15 +64,9 @@ export default function App() {
           <Route path='/signup' element={<Register />}></Route>
           <Route path='/signin' element={<Login />}></Route>
           <Route path='*' element={<NotFound />}></Route>
+        
         </Routes>
-
       </BrowserRouter>
     </div>
   )
 }
-
-/*
-        <Burger
-          active={menuBurgetActiv}
-          setActive={setMenuBurgetActiv} />
-  */
