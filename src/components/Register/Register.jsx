@@ -2,6 +2,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './Register.css';
 
 export default function Register() {
+  
   const handleSubmit = (evt) => {
     evt.preventDefault();
   }
