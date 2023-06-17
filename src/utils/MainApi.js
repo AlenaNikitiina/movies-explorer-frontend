@@ -34,6 +34,19 @@ class Api {
     .then(this._checkServerAnswer);
   }
 
+  // Регистрация
+  register(email, password) {
+  return fetch(`${BASE_URL}/signup`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify( {email, password} ),
+  })
+  .then(this._checkServerAnswer);
+};
+
 }
 
 
