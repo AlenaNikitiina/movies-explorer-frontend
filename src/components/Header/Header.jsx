@@ -6,7 +6,7 @@ import Navigation from '../Navigation/Navigation';
 
 export default function Header({ loggedIn }) {
   return (
-    <section className={ loggedIn ? 'header_white' : 'header' } >
+    <header className={ loggedIn ? 'header_white' : 'header' } >
       <div className='header__content'>
       
         <Link to="/" className='header__logo'>
@@ -15,6 +15,6 @@ export default function Header({ loggedIn }) {
       
         <Navigation loggedIn={loggedIn} />
       </div>
-    </section>
+    </header>
   )
 }

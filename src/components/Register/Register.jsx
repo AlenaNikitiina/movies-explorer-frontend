@@ -1,5 +1,5 @@
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './Register.css';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
 export default function Register({ handleRegister }) {
@@ -28,9 +28,9 @@ export default function Register({ handleRegister }) {
       isValid={isValid}
     >
       <section className='register'>
-        <label className='form__label' htmlFor='name'>Имя
+        <label className='register__label' htmlFor='name'>Имя
           <input
-            className='form__input'
+            className='register__input'
             type='text'
             name='name'
             id='name'
@@ -41,12 +41,12 @@ export default function Register({ handleRegister }) {
             value={values.name || ''}
             onChange={handleChange}
           />
-          <span className='form__error' id='name-error'>{errors.name}</span>
+          <span className='register__error' id='name-error'>{errors.name}</span>
         </label>
 
-        <label className='form__label' htmlFor='email'>E-mail
+        <label className='register__label' htmlFor='email'>E-mail
           <input
-            className='form__input'
+            className='register__input'
             type='email'
             name='email'
             id='email'
@@ -57,12 +57,12 @@ export default function Register({ handleRegister }) {
             value={values.email || ''}
             onChange={handleChange}
           />
-          <span className='form__error' id='email-error'>{errors.email}</span>
+          <span className='register__error' id='email-error'>{errors.email}</span>
         </label>
 
-        <label className='form__label' htmlFor='password'>Пароль
+        <label className='register__label' htmlFor='password'>Пароль
           <input
-            className='form__input'
+            className='register__input'
             type='password'
             name='password'
             id='password'
@@ -73,7 +73,7 @@ export default function Register({ handleRegister }) {
             value={values.password || ''}
             onChange={handleChange}
           />
-          <span className='form__error' id='password-error'>{errors.password}</span>
+          <span className='register__error' id='password-error'>{errors.password}</span>
         </label>
       </section>
     </PopupWithForm>

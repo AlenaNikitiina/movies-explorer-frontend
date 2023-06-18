@@ -90,7 +90,7 @@
   height: 38px;
   border: none;
   background-color: transparent;
-  background-image: url('../../images/burger_close_button.png');
+  background-image: url('../../images/burger_close_btn.svg');
   background-position: center;
   z-index: 3;
 }

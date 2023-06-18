@@ -8,17 +8,6 @@
   margin: 0 auto;
 }
 
-.section__title {
-  margin: 0;
-  font-size: 22px;
-  line-height: 27px;
-  letter-spacing: -0.04em;
-  font-weight: 400;
-  text-align: left;
-  padding-bottom: 23px;
-  border-bottom: 1px solid var(--black);
-  max-height: 27px;
-}
 
 .about-project__description {
   display: grid;
@@ -131,7 +120,7 @@
     font-size: 11px;
     margin: 33px 0 0;
   }
-  .section__title {
+  .title {
     font-size: 18px;
   }
   .about-project__time {

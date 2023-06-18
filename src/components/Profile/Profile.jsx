@@ -4,6 +4,7 @@ import { useContext,  useState, useEffect } from "react";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Profile( {onUpdateUser, renderLoading, signOut } ) {
+
   const currentUser = useContext(CurrentUserContext);
 
   const [userName, setUserName] = useState(''); // асинхрон ф меняется когда мен пропсы или юстейт
@@ -35,9 +36,11 @@ export default function Profile( {onUpdateUser, renderLoading, signOut } ) {
     evt.preventDefault();
   }
 
+  //`Привет, ${userName}!`
+
   return(
     <section className="profile">
-      <h1 className="profile__title">{`Привет, ${userName}!`}</h1>
+      <h1 className="profile__title">Привет, Алена!</h1>
       <form
         className='profile__form'
         onSubmit={handleSubmit}
@@ -52,13 +55,13 @@ export default function Profile( {onUpdateUser, renderLoading, signOut } ) {
             required
             minLength={2}
             maxLength={30}
-            placeholder="Имя"
-            name={userName}
+            placeholder="Алена"
+            //name={userName}
             value={userName || ''}
             onChange={handleChangeName} // Значение элемента «привязывается» к значению стейта
             renderLoading={renderLoading}
           />
-          <span className="form__error" id="name-error" />
+          <span className="profile__error" id="name-error" />
         </div>
 
         <div className="profile__cell">
@@ -77,7 +80,7 @@ export default function Profile( {onUpdateUser, renderLoading, signOut } ) {
             onChange={handleChangeEmail}
             renderLoading={renderLoading}
           />
-          <span className="form__error" id="email-error" />
+          <span className="profile__error" id="email-error" />
         </div>
       
         <button className="profile__edit-button button" type="button" onClick={handleEditButton}>Редактировать</button>

@@ -44,7 +44,7 @@
 }
 
 /**/
-.nav-tab {
+.navigation__auth {
   list-style: none;
   display: flex;
   flex-direction: row;
@@ -54,14 +54,14 @@
   align-items: center;
 }
 
-.nav-tab__item {
+.navigation__auth-item {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0px;
 }
 
-.nav-tab__item_active {
+.navigation__auth-item_active {
   padding: 8px 20px;
   border-radius: 3px;
   text-decoration: none;
@@ -71,12 +71,14 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0px;
+  border: none;
+  max-width: 76px;
   transition: opacity .3s linear;
 }
 
 .navigation__burger-btn {
   background: none;
-  background-image: url('../../images/bur.png');
+  background-image: url('../../images/burger.svg');
   width: 44px;
   height: 44px;
   border: none;
@@ -97,16 +99,16 @@
   .navigation__link {
     margin-right: 14px;
   }
-  .nav-tab {
+  .navigation-links {
     gap: 14px;
   }
-  .nav-tab__item {
+  .navigation__auth-item {
     font-size: 10px;
     font-weight: 500;
     line-height: 16px;
     letter-spacing: 0px;
   }
-  .nav-tab__item_active {
+  .navigation__auth-item_active {
     padding: 5px 12px;
     font-size: 10px;
     font-weight: 500;

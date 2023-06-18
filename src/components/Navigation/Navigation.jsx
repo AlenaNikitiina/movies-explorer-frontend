@@ -27,9 +27,9 @@ export default function Navigation({ loggedIn }) {
         </>
 
       ) : (
-        <div className='nav-tab'>
-          <Link to='/signup' className='nav-tab__item link'>Регистрация</Link>
-          <Link to='/signin' className='nav-tab__item_active'>Войти</Link>
+        <div className='navigation__auth'>
+          <Link to='/signup' className='navigation__auth-item link'>Регистрация</Link>
+          <Link to='/signin' className='navigation__auth-item_active'>Войти</Link>
         </div>
       )}
 

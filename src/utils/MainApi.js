@@ -34,6 +34,7 @@ class Api {
     .then(this._checkServerAnswer);
   }
 
+  /*
   // Регистрация
   register(email, password) {
   return fetch(`${BASE_URL}/signup`, {
@@ -46,7 +47,7 @@ class Api {
   })
   .then(this._checkServerAnswer);
 };
-
+*/
 }
 
 

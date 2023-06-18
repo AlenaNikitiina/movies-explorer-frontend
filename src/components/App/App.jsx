@@ -19,6 +19,7 @@ import api from '../../utils/MainApi';
 
 
 export default function App() {
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser]     = useState({}) // переменную состояния currentUser
   const [renderLoading, setRenderLoading] = useState(false) // идет сохранение/ загрузка
@@ -49,27 +50,6 @@ export default function App() {
     navigate('/');
   };
 */
-
-  // регистрация, в компоненте регистр / как прошла ?
-  function handelRegistration( {email, password} ) {
-    auth.register(email, password)
-      .then((res) => {
-        if (res) {
-          setRegistrationForm({
-            status: true,
-            text: 'Вы успешно зарегистрировались!',
-          })
-          navigate('/sign-in', { replace: true })
-        }
-      })
-      .catch(() => {
-        setRegistrationForm({
-          status: false,
-          text: 'Что-то пошло не так! Попробуйте ещё раз.',
-        })
-      })
-      .finally(() => setIsEditInfoTooltip(true))
-  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -118,7 +98,7 @@ export default function App() {
               }
             />
 
-            <Route path='/signup' element={<Register handelRegistration={handelRegistration} />}></Route>
+            <Route path='/signup' element={<Register />}></Route>
             <Route path='/signin' element={<Login />}></Route>
             <Route path='*' element={<NotFound />}></Route>
           

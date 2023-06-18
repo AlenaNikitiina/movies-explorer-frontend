@@ -1,10 +1,10 @@
-.register {
+.login {
   display: flex;
   flex-direction: column;
   max-width: 396px;
 }
 
-.register__label {
+.login__label {
   padding: 12px 0 12px;
   font-size: 10px;
   font-weight: 400;
@@ -13,7 +13,7 @@
   text-align: left;
 }
 
-.register__input {
+.login__input {
   width: 100%;
   padding: 5px 0 10px;
   border: none;
@@ -26,11 +26,11 @@
   text-align: left;
 }
 
-.register__input:focus {
+.login__input:focus {
   outline-color: var(--preview-color);
 }
 
-.register__error {
+.login__error {
   font-size: 10px;
   font-weight: 400;
   line-height: 12px;
