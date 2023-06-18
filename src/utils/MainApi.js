@@ -1,4 +1,4 @@
-class Api {
+class MainApi {
   constructor({url, headers}) {
     this._url = url;
     this._headers = headers;
@@ -34,10 +34,10 @@ class Api {
     .then(this._checkServerAnswer);
   }
 
-  /*
-  // Регистрация
-  register(email, password) {
-  return fetch(`${BASE_URL}/signup`, {
+
+  // Авторизация
+  authorize (email, password) {
+  return fetch(`${this._url}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -46,13 +46,27 @@ class Api {
     body: JSON.stringify( {email, password} ),
   })
   .then(this._checkServerAnswer);
-};
-*/
+  };
+
+  //2
+  // Регистрация
+  register(name, email, password) {
+  return fetch(`${this._url}/signup`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, email, password }),
+  })
+  .then(this._checkServerAnswer);
+  };
+
 }
 
 
 //// экзмпляр апи
-const api = new Api({
+const mainApi = new MainApi({
   url:"http://localhost:3000", // ссылка на бэкенд
   //url:"https://alenanik.nomoredomains.monster", // ссылка на бэкенд
   headers: {
@@ -60,4 +74,4 @@ const api = new Api({
   }
 }); 
 
-export default api;
+export default mainApi;

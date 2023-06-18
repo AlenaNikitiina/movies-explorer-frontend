@@ -6,13 +6,13 @@ export default function PopupWithForm ({ name, title, children, buttonText, link
   
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    console.log('handleFormSubmit');
+    console.log('handleFormSubmit PopupWithForm');
   }
 
   return (
     <section className='popup'>
       <div className='popup__wrapper'>
-        <Link to='/' className='popup__logo header__logo '>
+        <Link to='/' className='popup__logo header__logo'>
           <img src={logo} alt='Лого проекта' />
         </Link>
         <h1 className='popup__title'>{`${title}`}</h1>

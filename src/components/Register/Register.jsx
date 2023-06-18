@@ -43,7 +43,7 @@ export default function Register({ handleRegister }) {
           />
           <span className='register__error' id='name-error'>{errors.name}</span>
         </label>
-
+ 
         <label className='register__label' htmlFor='email'>E-mail
           <input
             className='register__input'
@@ -70,6 +70,7 @@ export default function Register({ handleRegister }) {
             required
             minLength={2}
             maxLength={30}
+            //val
             value={values.password || ''}
             onChange={handleChange}
           />

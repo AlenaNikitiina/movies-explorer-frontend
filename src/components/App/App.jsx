@@ -15,7 +15,8 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import api from '../../utils/MainApi';
+import mainApi from '../../utils/MainApi';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 
 export default function App() {
@@ -23,14 +24,18 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser]     = useState({}) // переменную состояния currentUser
   const [renderLoading, setRenderLoading] = useState(false) // идет сохранение/ загрузка
+  const [isInfoTooltip, setIsInfoTooltip] = useState(false); // popup
   //const navigate = useNavigate();
+  const [registrationForm, setRegistrationForm] = useState({ status: false, text: "" });
+  
 
 
   // обработчик изменения данных пользователя. имя, почта. from Profile
   function handleUpdateUser(name, about) {
     setRenderLoading(true);
-    api.editingProfile(name, about)
+    mainApi.editingProfile(name, about)
       .then ((newUserData) => {
+        console.log('dfddf');
         setCurrentUser(newUserData); // обновили
         //closeAllPopups();
       })
@@ -40,6 +45,53 @@ export default function App() {
       .finally(() => {
         setRenderLoading(false);
       })
+  };
+
+
+    // авторизация, в компоненте логин
+    function handleLogin( {email, password} ) {
+      setRenderLoading(true);
+      mainApi
+      .authorize(email, password)
+        .then((data) => {
+          console.log('handleLogin')
+          localStorage.setItem("jwt", data.token); // если ок то добавь в localStorage
+          //api.setAuthToken(data.token);
+          setLoggedIn(true); 
+          //navigate("/", {replace : true} )
+        registrationForm({
+          status: true,
+          text: 'Вы успешно зарегистрировались!',
+        });
+        setIsInfoTooltip(true);
+        })
+        .catch(() => {
+          setIsInfoTooltip(true)
+          setRegistrationForm({
+            status: false,
+            text: 'Что-то пошло не так!',
+          })
+        })
+  };
+
+  //2
+  // регистрация, в компоненте Registr + как прошла ?
+  function handelRegistration({ name, email, password }) {
+    setRenderLoading(true);
+    mainApi
+    .register(name, email, password)
+      .then((res) => {
+        console.log('handelRegistration')
+        handleLogin(email, password)
+      })
+      .catch(() => {
+        setRegistrationForm({
+          status: false,
+          text: 'Что-то пошло не так! Попробуйте ещё раз.',
+        });
+        setIsInfoTooltip(true)
+      })
+      .finally(() =>  setRenderLoading(false));
   };
 
   /*
@@ -98,11 +150,22 @@ export default function App() {
               }
             />
 
-            <Route path='/signup' element={<Register />}></Route>
+            <Route path='/signup' element={
+              <Register
+                handelRegistration={handelRegistration}
+                registrationForm={registrationForm}
+              />}></Route>
+            
             <Route path='/signin' element={<Login />}></Route>
             <Route path='*' element={<NotFound />}></Route>
           
           </Routes>
+          <InfoTooltip
+            isOpen={isInfoTooltip}
+            //onClose={closeAllPopups}
+            setIsInfoTooltip={setIsInfoTooltip}
+            registrationForm={registrationForm}
+          />
         </BrowserRouter>
       </div>
     </CurrentUserContext.Provider>
