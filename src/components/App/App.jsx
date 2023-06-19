@@ -20,7 +20,6 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 
 export default function App() {
-
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser]     = useState({}) // переменную состояния currentUser
   const [renderLoading, setRenderLoading] = useState(false) // идет сохранение/ загрузка
@@ -144,7 +143,6 @@ export default function App() {
                   loggedIn={loggedIn}
                   onUpdateUser={handleUpdateUser}
                   renderLoading={renderLoading}
-                  
                 />
               </>
               }
