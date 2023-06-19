@@ -46,15 +46,8 @@
 }
 
 .burger__link_active {
-  font-size: 18px;
-  line-height: 22px;
-  font-weight: 500;
-  color: var(--black);
   padding-bottom: 4px;
   border-bottom: 2px solid var(--black);
-  transition: opacity .3s linear;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 .burger__link:hover,

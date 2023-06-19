@@ -29,7 +29,7 @@ export default function Navigation({ loggedIn }) {
       ) : (
         <div className='navigation__auth'>
           <Link to='/signup' className='navigation__auth-item link'>Регистрация</Link>
-          <Link to='/signin' className='navigation__auth-item_active'>Войти</Link>
+          <Link to='/signin' className='navigation__auth-item navigation__auth-item_active'>Войти</Link>
         </div>
       )}
 
