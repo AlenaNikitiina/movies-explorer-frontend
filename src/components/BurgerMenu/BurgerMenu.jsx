@@ -5,6 +5,7 @@ export default function BurgerMenu({ onClose, loggedIn }) {
   const location = useLocation();
 
   return (
+  <section className='burger'>
     <div className={ loggedIn ? 'burger' : 'burger_hide' }>
       <div className='burger__blur'>
 
@@ -28,5 +29,6 @@ export default function BurgerMenu({ onClose, loggedIn }) {
         </div>
       </div>
     </div>
+  </section>
   )
 }
