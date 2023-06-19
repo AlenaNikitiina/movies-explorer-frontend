@@ -53,14 +53,13 @@
 .burger__link:hover,
 .burger__link_active:hover,
 .burger__close-btn:hover,
-.burger__account-btn:hover {
+.burger__account-link:hover {
   opacity: 0.7;
 }
 
-.burger__account-btn {
-  width: 100px;
+.burger__account-link {
   margin: 0 auto 90px;
-  padding: 8px 10px;
+  padding: 8px 10px 8px 28px;
   background-color: transparent;
   background-image: url(../../images/account_button.svg);
   background-position: 10% 50%;
@@ -72,8 +71,7 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0px;
-  cursor: pointer;
-  transition: opacity .3s linear;
+
 }
 
 .burger__close-btn {
@@ -104,7 +102,7 @@
   .burger__content {
     width: 100%;
   }
-  .burger__account-btn {
+  .burger__account-link {
     margin: 0 auto 46px;
   }
 }

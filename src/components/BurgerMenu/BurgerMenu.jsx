@@ -23,9 +23,7 @@ export default function BurgerMenu({ onClose, loggedIn }) {
             <Link to='/saved-movies' className={location.pathname === '/saved-movies' ? 'burger__link burger__link_active' : 'burger__link'}>Сохранённые фильмы</Link>
           </div>
 
-          <Link to='/profile'>
-            <button className='burger__account-btn'>Аккаунт</button>
-          </Link>
+          <Link to='/profile' className='burger__account-link link'>Аккаунт</Link>
         </div>
       </div>
     </div>

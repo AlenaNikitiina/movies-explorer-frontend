@@ -24,10 +24,10 @@
   margin-right: 0;
 }
 
-.navigation__account-btn {
+.navigation__account-link {
   margin-left: 30px;
   width: 100px;
-  padding: 8px 10px;
+  padding: 8px 10px 8px 28px;
   background-color: transparent;
   background-image: url(../../images/account_button.svg);
   background-position: 12% 50%;
@@ -39,8 +39,6 @@
   font-weight: 500;
   line-height: 16px;
   letter-spacing: 0px;
-  cursor: pointer;
-  transition: opacity .3s linear;
 }
 
 /**/
@@ -83,7 +81,7 @@
 
 @media screen and (max-width: 768px) {
   .navigation__content,
-  .navigation__account-btn {
+  .navigation__account-link {
     display: none;
   }
   .navigation__burger-btn {

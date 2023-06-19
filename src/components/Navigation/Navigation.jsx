@@ -20,9 +20,7 @@ export default function Navigation({ loggedIn }) {
             <Link to='/movies' className={ location.pathname === '/movies'             ? 'navigation__link_active link' : 'navigation__link link'}>Фильмы</Link>
             <Link to='/saved-movies' className={ location.pathname === '/saved-movies' ? 'navigation__link_active link' : 'navigation__link link'}>Сохраненные фильмы</Link>
 
-            <Link to='/profile'>
-              <button className='navigation__account-btn'>Аккаунт</button>
-            </Link>
+            <Link to='/profile' className='navigation__account-link link'>Аккаунт</Link>
           </div>
         </>
 
