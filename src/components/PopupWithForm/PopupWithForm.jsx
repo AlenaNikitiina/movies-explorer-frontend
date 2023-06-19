@@ -12,7 +12,7 @@ export default function PopupWithForm ({ name, title, children, buttonText, link
   return (
     <section className='popup'>
       <div className='popup__wrapper'>
-        <Link to='/' className='popup__logo header__logo '>
+        <Link to='/' className='popup__logo'>
           
           <img src={logo} alt='Лого проекта' />
         </Link>
