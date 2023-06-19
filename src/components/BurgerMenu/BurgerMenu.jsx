@@ -5,8 +5,7 @@ export default function BurgerMenu({ onClose, loggedIn }) {
   const location = useLocation();
 
   return (
-  <section className='burger'>
-    <div className={ loggedIn ? 'burger' : 'burger_hide' }>
+    <section className={ loggedIn ? 'burger' : 'burger burger_hide' }>
       <div className='burger__blur'>
 
         <div className='burger__content'>
@@ -26,7 +25,6 @@ export default function BurgerMenu({ onClose, loggedIn }) {
           <Link to='/profile' className='burger__account-link link'>Аккаунт</Link>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   )
 }
