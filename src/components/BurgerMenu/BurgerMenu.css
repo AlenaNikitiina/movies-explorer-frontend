@@ -1,0 +1,163 @@
+.burger {
+  z-index: 2;
+  transition: opacity .3s linear;
+}
+
+.burger__blur {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.burger__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100%;
+  background-color: var(--white);
+}
+
+.burger__list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 200px;
+}
+
+.burger__link {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  color: var(--black);
+  transition: opacity .3s linear;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.burger__link_active {
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--black);
+}
+
+.burger__link:hover,
+.burger__link_active:hover,
+.burger__close-btn:hover,
+.burger__account-link:hover {
+  opacity: 0.7;
+}
+
+.burger__account-link {
+  margin: 0 auto 90px;
+  padding: 8px 10px 8px 28px;
+  background-color: transparent;
+  background-image: url(../../images/account_button.svg);
+  background-position: 10% 50%;
+  background-repeat: no-repeat;
+  background-size: 12px 14px;
+  border: 2px solid var(--light-grey);
+  border-radius: 20px;
+  text-align: right;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+
+}
+
+.burger__close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  background-color: transparent;
+  background-image: url('../../images/burger_close_btn.svg');
+  background-position: center;
+  z-index: 3;
+}
+
+.burger_hide {display: none}
+
+@media screen and (min-width: 768px) {
+  .burger {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .burger__list {
+    margin-top: 144px;
+  }
+  .burger__content {
+    width: 100%;
+  }
+  .burger__account-link {
+    margin: 0 auto 46px;
+  }
+}
+
+
+
+/*линии бургера когда-нибудь заработает
+.burger__close {
+  top: 10px;
+  left: 200px;
+}
+.burger__line {
+  width: 20px;
+  height: 2px;
+  background-color: var(--black);
+  position: relative;
+  top: 14px;
+  left: 200px;
+}
+
+.burger__line::before {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background-color: var(--black);
+  position: absolute;
+  top: -7px;
+  left: 0;
+  transition: all 0.3s ease-out;
+}
+
+.burger__line::after {
+  content: "";
+  width: 20px;
+  height: 2px;
+  background-color: var(--black);
+  position: absolute;
+  top: 7px;
+  left: 0;
+  transition: all 0.3s ease-out;
+}
+
+.burger_close .burger__line {
+  background-color: transparent;
+}
+
+.burger_close .burger__line::before {
+  width: 22px;
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.burger_close .burger__line::after {
+  width: 22px;
+  transform: rotate(-45deg);
+  top: 0;
+}
+*/
