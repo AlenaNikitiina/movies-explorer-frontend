@@ -37,6 +37,8 @@
   background-color: var(--black);
   color: var(--white);
   padding: 13px 0 15px;
+  border: none;
+  border-radius: 3px;
 }
 
 .popup__question {
@@ -72,5 +74,13 @@
   }
   .popup__logo {
     margin: 0 auto;
+  }
+  .popup__question {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  .popup__link {
+    font-size: 12px;
+    line-height: 14px;
   }
 }
