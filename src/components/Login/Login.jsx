@@ -3,13 +3,12 @@ import './Login.css';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
-export default function Login({ handleRegister, renderLoading }) {
-  const { handleChange, values, errors, isValid, resetForm } = useFormWithValidation();
+export default function Login({ handleLogin, renderLoading }) {
+  const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
 
    const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleRegister(
-      values.name,
+    handleLogin(
       values.email,
       values.password
     );
@@ -25,7 +24,7 @@ export default function Login({ handleRegister, renderLoading }) {
       linkText='Регистрация'
       question='Ещё не зарегистрированы?'
       renderLoading={renderLoading}
-      isValid={isValid}
+      isFormValid={isFormValid}
       onSubmit={handleSubmit}
     >
       <section className='login register'>

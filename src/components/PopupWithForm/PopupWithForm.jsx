@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import './PopupWithForm.css';
 import logo from '../../images/logo.svg';
 
-export default function PopupWithForm ({ onSubmit, name, title, children, buttonText, linkText, question, link }) {
+export default function PopupWithForm ({ onSubmit, isFormValid, name, title, children, buttonText, linkText, question, link }) {
 
   return (
     <section className='popup'>
@@ -22,7 +22,11 @@ export default function PopupWithForm ({ onSubmit, name, title, children, button
         >
         {children}
       
-        <button className='popup__button button' type='submit'>{buttonText}</button>
+        <button
+          className='popup__button button'
+          type='submit'
+          disabled={!isFormValid}
+          >{buttonText}</button>
       </form>
 
       <p className='popup__question'>{question}&nbsp;

@@ -41,6 +41,10 @@
   border-radius: 3px;
 }
 
+.popup__button:disabled {
+  background-color: var(--text-grey);
+}
+
 .popup__question {
   margin: 15px auto 0px;
   text-align: center;

@@ -3,7 +3,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
 export default function Register({ handleRegister, renderLoading }) {
-  const { handleChange, values, errors, isValid, resetForm } = useFormWithValidation();
+  const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -25,7 +25,7 @@ export default function Register({ handleRegister, renderLoading }) {
       question='Уже зарегистрированы?'
       renderLoading={renderLoading}
       onSubmit={handleSubmit}
-      isValid={isValid}
+      isFormValid={isFormValid}
     >
       <section className='register'>
         <label className='register__label' htmlFor='name'>Имя
