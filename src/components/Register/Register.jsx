@@ -2,7 +2,7 @@ import './Register.css';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
-export default function Register({ handleRegister }) {
+export default function Register({ handleRegister, renderLoading }) {
   const { handleChange, values, errors, isValid, resetForm } = useFormWithValidation();
 
   const handleSubmit = (evt) => {
@@ -23,7 +23,7 @@ export default function Register({ handleRegister }) {
       link='/signin'
       linkText='Войти'
       question='Уже зарегистрированы?'
-      //renderLoading={renderLoading}
+      renderLoading={renderLoading}
       onSubmit={handleSubmit}
       isValid={isValid}
     >
@@ -41,9 +41,9 @@ export default function Register({ handleRegister }) {
             value={values.name || ''}
             onChange={handleChange}
           />
-          <span className='register__error' id='name-error'>{errors.name}</span>
+          <span className='register__error name-error' id='name-error'>{errors.name}</span>
         </label>
- 
+
         <label className='register__label' htmlFor='email'>E-mail
           <input
             className='register__input'
@@ -54,10 +54,11 @@ export default function Register({ handleRegister }) {
             required
             minLength={4}
             maxLength={40}
+            //pattern=''
             value={values.email || ''}
             onChange={handleChange}
           />
-          <span className='register__error' id='email-error'>{errors.email}</span>
+          <span className='register__error email-error' id='email-error'>{errors.email}</span>
         </label>
 
         <label className='register__label' htmlFor='password'>Пароль
@@ -70,11 +71,11 @@ export default function Register({ handleRegister }) {
             required
             minLength={2}
             maxLength={30}
-            //val
+            pattern='[A-Za-z0-9]{2,30}'
             value={values.password || ''}
             onChange={handleChange}
           />
-          <span className='register__error' id='password-error'>{errors.password}</span>
+          <span className='register__error password-error' id='password-error'>{errors.password}</span>
         </label>
       </section>
     </PopupWithForm>

@@ -1,11 +1,19 @@
 
 import './Login.css';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
-export default function Login() {
+export default function Login({ handleRegister, renderLoading }) {
+  const { handleChange, values, errors, isValid, resetForm } = useFormWithValidation();
 
-  const handleSubmit = (evt) => {
+   const handleSubmit = (evt) => {
     evt.preventDefault();
+    handleRegister(
+      values.name,
+      values.email,
+      values.password
+    );
+    resetForm();
   }
 
   return(
@@ -16,6 +24,8 @@ export default function Login() {
       link='/signup'
       linkText='Регистрация'
       question='Ещё не зарегистрированы?'
+      renderLoading={renderLoading}
+      isValid={isValid}
       onSubmit={handleSubmit}
     >
       <section className='login register'>
@@ -26,8 +36,13 @@ export default function Login() {
             name='email'
             id='email'
             required
+            minLength={4}
+            maxLength={40}
+            //pattern=''
+            value={values.email || ''}
+            onChange={handleChange}
           />
-          <span className='login__error' id='email-error' />
+          <span className='login__error email-error' id='email-error'>{errors.email}</span>
         </label>
 
         <label className='login__label' htmlFor='password'>Пароль
@@ -36,11 +51,15 @@ export default function Login() {
             type='password'
             name='password'
             id='password'
+            placeholder="Пароль"
             required
             minLength={2}
             maxLength={30}
+            pattern='[A-Za-z0-9]{2,30}'
+            value={values.password || ''}
+            onChange={handleChange}
           />
-          <span className='login__error' id='password-error' />
+          <span className='login__error password-error' id='password-error'>{errors.password}</span>
         </label>
       </section>
     </PopupWithForm>

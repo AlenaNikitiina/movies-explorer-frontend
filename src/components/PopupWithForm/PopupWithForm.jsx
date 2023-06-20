@@ -2,18 +2,12 @@ import { Link } from "react-router-dom";
 import './PopupWithForm.css';
 import logo from '../../images/logo.svg';
 
-export default function PopupWithForm ({ name, title, children, buttonText, linkText, question, link }) {
-  
-  const handleFormSubmit = (evt) => {
-    evt.preventDefault();
-    console.log('handleFormSubmit PopupWithForm');
-  }
+export default function PopupWithForm ({ onSubmit, name, title, children, buttonText, linkText, question, link }) {
 
   return (
     <section className='popup'>
       <div className='popup__wrapper'>
         <Link to='/' className='popup__logo'>
-          
           <img src={logo} alt='Лого проекта' />
         </Link>
         <h1 className='popup__title'>{`${title}`}</h1>
@@ -23,9 +17,11 @@ export default function PopupWithForm ({ name, title, children, buttonText, link
         className='popup__form'
         name={`popup_${name}`}
         action=''
-        onSubmit={handleFormSubmit}
+        noValidate
+        onSubmit={onSubmit}
         >
         {children}
+      
         <button className='popup__button button' type='submit'>{buttonText}</button>
       </form>
 

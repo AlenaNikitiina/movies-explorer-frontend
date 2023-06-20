@@ -1,22 +1,23 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 //import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import mainApi from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+//import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 
 export default function App() {
@@ -27,7 +28,6 @@ export default function App() {
   //const navigate = useNavigate();
   const [registrationForm, setRegistrationForm] = useState({ status: false, text: "" });
   
-
 
   // обработчик изменения данных пользователя. имя, почта. from Profile
   function handleUpdateUser(name, about) {
@@ -48,10 +48,11 @@ export default function App() {
 
 
     // авторизация, в компоненте логин
-    function handleLogin( {email, password} ) {
+    function handleLogin({ email, password }) {
       setRenderLoading(true);
+    
       mainApi
-      .authorize(email, password)
+      .login(email, password)
         .then((data) => {
           console.log('handleLogin')
           localStorage.setItem("jwt", data.token); // если ок то добавь в localStorage
@@ -75,12 +76,14 @@ export default function App() {
 
   //2
   // регистрация, в компоненте Registr + как прошла ?
-  function handelRegistration({ name, email, password }) {
+  function handleRegister({ name, email, password }) {
+    console.log('handelRegistration app')
     setRenderLoading(true);
+
     mainApi
     .register(name, email, password)
-      .then((res) => {
-        console.log('handelRegistration')
+      .then(() => {
+        console.log('handelRegistration 2')
         handleLogin(email, password)
       })
       .catch(() => {
@@ -149,15 +152,26 @@ export default function App() {
             />
 
             <Route path='/signup' element={
-              <Register
-                handelRegistration={handelRegistration}
-                registrationForm={registrationForm}
-              />}></Route>
+              loggedIn ?
+              <Navigate to='/movies' />
+                :
+                <Register
+                handleRegister={handleRegister}
+                  registrationForm={registrationForm}
+                />}>
+            </Route>
             
-            <Route path='/signin' element={<Login />}></Route>
-            <Route path='*' element={<NotFound />}></Route>
+            <Route path='/signin' element={
+              loggedIn ?
+              <Navigate to='/movies' />
+                :
+              <Login handleLogin={handleLogin} />}>
+            </Route>
           
+            <Route path='*' element={<NotFound />}></Route>
+        
           </Routes>
+        
           <InfoTooltip
             isOpen={isInfoTooltip}
             //onClose={closeAllPopups}
@@ -169,3 +183,16 @@ export default function App() {
     </CurrentUserContext.Provider>
   )
 }
+
+
+/*
+            <Route path='/signup' element={
+              loggedIn ?
+              <Navigate to='/movies' />
+                :
+                <Register
+                  handelRegistration={handelRegistration}
+                  registrationForm={registrationForm}
+                />}>
+            </Route>
+            */

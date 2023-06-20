@@ -3,9 +3,9 @@ class MainApi {
     this._url = url;
     this._headers = headers;
 
-    const token = localStorage.getItem("jwt")
-    if (token)
-      this.setAuthToken(token);
+    //const token = localStorage.getItem("jwt")
+    //if (token)
+      //this.setAuthToken(token);
   }
 
   // проверка ответа от сервера. Венесено в метод, чтобы не писать одно и тоже
@@ -18,9 +18,9 @@ class MainApi {
   }
 
   //
-  setAuthToken (token) {
-    this._headers.Authorization = `Bearer ${token}`;
-  }
+  //setAuthToken (token) {
+    //this._headers.Authorization = `Bearer ${token}`;
+  //}
 
   // 1 Редактирование профиля
   editingProfile (newName, newEmail) {
@@ -34,9 +34,21 @@ class MainApi {
     .then(this._checkServerAnswer);
   }
 
-
+  // Регистрация
+  register(name, email, password) {
+    return fetch(`${this._url}/signup`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, email, password }),
+    })
+    .then(this._checkServerAnswer);
+  };
+  
   // Авторизация
-  authorize (email, password) {
+  login (email, password) {
   return fetch(`${this._url}/signin`, {
     method: "POST",
     headers: {
@@ -44,20 +56,6 @@ class MainApi {
       "Content-Type": "application/json",
     },
     body: JSON.stringify( {email, password} ),
-  })
-  .then(this._checkServerAnswer);
-  };
-
-  //2
-  // Регистрация
-  register(name, email, password) {
-  return fetch(`${this._url}/signup`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ name, email, password }),
   })
   .then(this._checkServerAnswer);
   };
