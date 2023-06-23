@@ -133,6 +133,8 @@ export default function App() {
           setLoggedIn(true); // авторизуем пользователя
           // checkToken заодно выдаёт информацию о на шем пользователе - сохраним её
           setCurrentUser(res);
+
+          mainApi.setAuthToken(jwt);
           navigate("/", {replace: true}) // перенаправьте
         }
       })

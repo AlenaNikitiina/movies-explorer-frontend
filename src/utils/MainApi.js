@@ -18,6 +18,7 @@ class MainApi {
   }
 
   setAuthToken (token) {
+    console.log('setAuthToken', token);
     this._headers.Authorization = `Bearer ${token}`;
   }
 
@@ -27,8 +28,10 @@ class MainApi {
       method: 'PATCH', // заменить имя и почту
       //headers: this._headers,
       headers: {
+        ...this._headers,
         Accept: "application/json",
-        "Content-Type": "application/json",
+        //"Content-Type": "application/json",
+        //Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: newName,
