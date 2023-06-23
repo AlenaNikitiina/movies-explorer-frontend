@@ -5,6 +5,10 @@
   width: 100%;
   align-items: center;
 }
+.navigation_white{
+  padding: 18px 0;
+  background-color: var(--white);
+}
 
 .navigation__link {
   margin-right: 20px;

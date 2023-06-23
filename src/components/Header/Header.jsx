@@ -4,9 +4,10 @@ import './Header.css';
 import logo from '../../images/logo.svg';
 import Navigation from '../Navigation/Navigation';
 
-export default function Header({ loggedIn }) {
+//<header className={ loggedIn ? 'header_white' : 'header' } >
+export default function Header({ loggedIn, onOverlayClick }) {
   return (
-    <header className={ loggedIn ? 'header_white' : 'header' } >
+    <header className='header' onClick={onOverlayClick} >
       <div className='header__content'>
       
         <Link to="/" className='header__logo'>

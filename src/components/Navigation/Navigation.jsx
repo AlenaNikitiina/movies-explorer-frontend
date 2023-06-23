@@ -3,16 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
 import BurgerMenu from '../BurgerMenu/BurgerMenu'; //
 
-export default function Navigation({ loggedIn }) {
-  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+export default function Navigation({ loggedIn, onOverlayClick }) {
   const location = useLocation();
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   const toggleBurger = () => {
     setIsBurgerOpen(!isBurgerOpen);
   };
 
+  //<header className={ loggedIn ? 'header_white' : 'header' } >
+
   return (
-    <nav className='navigation'>
+    <nav className='navigation' onClick={onOverlayClick}>
       { loggedIn
       ? (
         <>

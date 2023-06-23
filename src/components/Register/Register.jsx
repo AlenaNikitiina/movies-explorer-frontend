@@ -21,11 +21,11 @@ export default function Register({ handleRegister, renderLoading }) {
       title='Добро пожаловать!'
       buttonText='Зарегистрироваться'
       link='/signin'
-      linkText='Войти'
       question='Уже зарегистрированы?'
       renderLoading={renderLoading}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
+      linkText={renderLoading ? `Регистрация...` : `Зарегистрироваться`}
     >
       <section className='register'>
         <label className='register__label' htmlFor='name'>Имя
@@ -38,6 +38,7 @@ export default function Register({ handleRegister, renderLoading }) {
             required
             minLength={2}
             maxLength={30}
+            pattern='[a-zA-Za-яА-Я -]{2,30}'
             value={values.name || ''}
             onChange={handleChange}
           />
@@ -54,7 +55,7 @@ export default function Register({ handleRegister, renderLoading }) {
             required
             minLength={4}
             maxLength={40}
-            //pattern=''
+            pattern='^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$'
             value={values.email || ''}
             onChange={handleChange}
           />

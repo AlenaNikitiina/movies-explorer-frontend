@@ -35,6 +35,16 @@
   outline-color: var(--preview-color);
 }
 
+.profile__error {
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--scarlet);
+}
+
 .profile__cell {
   display: flex;
   flex-direction: row;
