@@ -21,12 +21,11 @@ export default function Login({ handleLogin, renderLoading }) {
       title='Рады видеть!'
       buttonText='Войти'
       link='/signup'
-      linkText='Регистрация'
       question='Ещё не зарегистрированы?'
       renderLoading={renderLoading}
       isFormValid={isFormValid}
       onSubmit={handleSubmit}
-      //linkText={renderLoading ? `Регистрация...` : `Зарегистрироваться`}
+      linkText={renderLoading ? `Регистрация...` : `Зарегистрироваться`}
     >
       <section className='login register'>
         <label className='login__label' htmlFor='email'>E-mail

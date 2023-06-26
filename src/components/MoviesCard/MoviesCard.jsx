@@ -1,17 +1,64 @@
-import { useState } from 'react';
 import './MoviesCard.css';
+import { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import mainApi from '../../utils/MainApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function MoviesCard({ movie }) {
-  const { nameRU, duration, trailerLink, image } = movie;
-  const imageSource = 'https://api.nomoreparties.co'; // пока не связан с беком
-
+  const [renderLoading, setRenderLoading] = useState(false) // идет сохранение/ загрузка
+  const { nameRU, duration, trailerLink } = movie;
+  const { savedMovies, setSavedMovies }= useContext(CurrentUserContext);
   const [isSaved, setIsSaved] = useState(false); // сохранен ли фильм
-  const handleSaveMovie = () => setIsSaved(true);
+  const imageSource = 'https://api.nomoreparties.co'; // пока не связан с беком
+  const { pathname } = useLocation();
+
+  // сохранить фильм
+  function handleSaveMovie () {
+    setRenderLoading(true);
+    //console.log('1 handleSaveMovie', '2', savedMovies, '3', movie)
+    const rebuildMovieForSave = (src) =>
+    { //JSON.stringify
+      const rebuild = structuredClone(src);
+      rebuild.image = `${imageSource}${src.image.url}`;
+      rebuild.thumbnail = `${imageSource}${src.image.url}`;
+      rebuild.movieId = src.id;
+      delete rebuild.id;
+      delete rebuild.created_at;
+      delete rebuild.updated_at;
+      return rebuild;
+    };
+
+    mainApi.saveMovie(rebuildMovieForSave(movie)) // метод из апи - добавить нов карточку с именем и ссылкой
+      .then((data) => {
+        console.log("from then handleSaveMovie", data);
+        console.log('setSavedMovies', setSavedMovies);
+        setSavedMovies([ ...savedMovies, data ]);
+        setIsSaved(true);
+      })
+      .catch(err => {
+        console.log("Не получилось сохранить фильм", err);
+      })
+      .finally(() => {
+        setRenderLoading(false);
+      })
+  };
+  
+  const getMovieUrl = (movie) => {
+    //const { savedMovies }= useContext(CurrentUserContext);
+    /*
+    if (pathname === '/saved-movies') {
+      console.log("saved-movies", movie);
+      console.log("all saved movies", savedMovies);
+    }*/
+
+    return pathname === '/movies' ? `${imageSource}${movie.image.url}` : movie.image;
+  };
+
+  // удалить фильм
   const handleDeleteMovie = () => setIsSaved(false);
 
   return (
     <li className='card__element'>
-      
         <div className='card__info'>
           <p className='card__title'>{nameRU}</p>
           <p className='card__duration'>{`${duration}${' минут'}`}</p>
@@ -24,7 +71,7 @@ export default function MoviesCard({ movie }) {
         >
           <img
             className='card__photo'
-            src={`${imageSource}${image.url}`}
+            src={getMovieUrl(movie)}
             alt={nameRU}
           />
         </a>
@@ -35,9 +82,6 @@ export default function MoviesCard({ movie }) {
           aria-label='сохранить фильм'
           type='button'>
         </button>
-
     </li>
   )
 }
-
-// className='card__saved-btn button'

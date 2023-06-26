@@ -25,7 +25,7 @@ export default function Register({ handleRegister, renderLoading }) {
       renderLoading={renderLoading}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
-      linkText={renderLoading ? `Регистрация...` : `Зарегистрироваться`}
+      linkText={renderLoading ? `Регистрация...` : `Войти`}
     >
       <section className='register'>
         <label className='register__label' htmlFor='name'>Имя

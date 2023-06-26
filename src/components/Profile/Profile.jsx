@@ -5,11 +5,8 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
 export default function Profile({ onUpdateUser, renderLoading, onSignOut, onOverlayClick }) {
-  //console.log("fff ", CurrentUserContext)
   const currentUser = useContext(CurrentUserContext);
-
   const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
-
   
   const handleSubmit = (evt) => {
     console.log('handleSubmit');
@@ -25,21 +22,13 @@ export default function Profile({ onUpdateUser, renderLoading, onSignOut, onOver
   const handleEditButton = (evt) => {
     console.log('handleEditButton');
     evt.preventDefault();
-    //onUpdateUser(values);
-    /*
-    onUpdateUser({
-      name: values.name,
-      email: values.email,
-    });
-    */
+
     onUpdateUser(
       values.name,
       values.email
     );
     //resetForm();
   }
-
-  ////////
 
   /*
   function f () {
