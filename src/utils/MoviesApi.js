@@ -6,6 +6,10 @@ class MoviesApi {
     this._headers = headers;
   }
 
+  setAuthToken (token) {
+    this._headers.Authorization = `Bearer ${token}`;
+  }
+
   // проверка ответа от сервера. Венесено в метод, чтобы не писать одно и тоже
   _checkAnswer (response) {
     if (response.ok) {
@@ -15,6 +19,7 @@ class MoviesApi {
     }
   }
 
+  // получить все фильмы
   getMovies() {
     return fetch(this._url, {
       method: "GET",
