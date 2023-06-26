@@ -39,7 +39,6 @@ export default function Navigation({ loggedIn, onOverlayClick }) {
       ) : (
         <BurgerMenu onClose={toggleBurger} loggedIn={loggedIn} />
       )}
-    
     </nav>
   )
 }
