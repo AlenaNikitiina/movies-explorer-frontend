@@ -1,3 +1,5 @@
+import { BASE_URL } from './constants.js';
+
 class MainApi {
   constructor({url, headers}) {
     this._url = url;
@@ -18,19 +20,17 @@ class MainApi {
   }
 
   setAuthToken (token) {
-    console.log('setAuthToken', token);
+    //console.log('setAuthToken', token);
     this._headers.Authorization = `Bearer ${token}`;
   }
 
   // 1 Редактирование профиля
   editingProfile (newName, newEmail) {
-    return fetch(this._url + `/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH', // заменить имя и почту
-      //headers: this._headers,
       headers: {
         ...this._headers,
         Accept: "application/json",
-        //"Content-Type": "application/json",
         //Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
@@ -45,8 +45,8 @@ class MainApi {
     return fetch(`${this._url}/signup`, {
       method: "POST",
       headers: {
+        ...this._headers,
         Accept: "application/json",
-        "Content-Type": "application/json",
       },
       body: JSON.stringify({ name, email, password }),
     })
@@ -58,8 +58,8 @@ class MainApi {
   return fetch(`${this._url}/signin`, {
     method: "POST",
     headers: {
+      ...this._headers,
       Accept: "application/json",
-      "Content-Type": "application/json",
     },
     body: JSON.stringify( {email, password} ),
   })
@@ -71,29 +71,29 @@ class MainApi {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        ...this._headers,
         Authorization: `Bearer ${token}`,
       },
     })
     .then(this._checkServerAnswer);
   };
 
+  // сохранить фильм
+  saveMovie(movie) {
+    return fetch(`${this._url}/movies`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify(movie),
+    })
+    .then(this._checkServerAnswer);
+  }
 
-  // ПОХОЖЕ ЭТО ДОЛЖНО БЫТЬ в MainApi.js, т.к. это относится к информации о пользователям
-  getContent (token) {
-    return fetch(`${this._url}/users/me`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(this._checkServerAnswer);
-  };
 }
 
 //// экзмпляр апи
 const mainApi = new MainApi({
   // url:"http://localhost:3000", // ссылка на бэкенд
-  url:"https://alenanik.nomoredomains.monster", // ссылка на бэкенд
+  url: BASE_URL,
   headers: {
     "Content-type": 'application/json'
   }
