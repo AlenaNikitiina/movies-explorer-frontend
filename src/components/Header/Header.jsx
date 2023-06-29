@@ -22,3 +22,4 @@ export default function Header({ loggedIn, onOverlayClick }) {
     </header>
   )
 }
+//className={ loggedIn ? 'header_white' : 'header' }

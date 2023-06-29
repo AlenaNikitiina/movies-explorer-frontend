@@ -1,8 +1,5 @@
-import React, { useContext } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-//import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import './App.css';
 import Header from '../Header/Header';
@@ -14,12 +11,14 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
+//import Preloader from '../Preloader/Preloader';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import mainApi from '../../utils/MainApi';
-import moviesApi from '../../utils/MoviesApi';
+//import MoviesApi from '../../utils/MoviesApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { AppMessage } from '../../utils/constants';
-//import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 
 export default function App() {
@@ -39,7 +38,7 @@ export default function App() {
       .editingProfile(name, email)
       .then ((newUserData) => {
         setCurrentUser(newUserData); // обновили
-        //closeAllPopups();
+        closeAllPopups();
       })
       .catch(err => {
         console.log(AppMessage.UPDATE_ERR, err);
@@ -48,6 +47,8 @@ export default function App() {
         setRenderLoading(false);
       })
   };
+  
+  //console.log('currentUser:', currentUser)
 
     // Авторизация, в компоненте Login
     function handleLogin(email, password) {
@@ -56,7 +57,7 @@ export default function App() {
         .then((data) => {
           localStorage.setItem("jwt", data.token); // если ок то добавь в localStorage
           setLoggedIn(true); // залогинь
-          navigate("/movies", {replace : true} )
+          navigate('/movies', {replace : true} );
         })
         .catch(() => {
           setRegistrationForm({
@@ -79,7 +80,8 @@ export default function App() {
             text: AppMessage.SUCCESS,
           })
           setIsInfoTooltip(true);
-          handleLogin(email, password)
+          handleLogin(email, password);
+          navigate('/movies');
         }
       })
       .catch(() => {
@@ -101,9 +103,12 @@ export default function App() {
       .checkToken(jwt)
       .then((res) => {
         if (res) {
+          //console.log("checkToken res", res)
           setLoggedIn(true); // авторизуем пользователя
-          // checkToken заодно выдаёт информацию о на шем пользователе - сохраним её
+          // checkToken заодно выдаёт информацию о нашем пользователе - сохраним её
+          console.log("checkToken res", res)
           setCurrentUser(res);
+          console.log("checkToken currentUser", currentUser);
           mainApi.setAuthToken(jwt);
           navigate("/", {replace: true}) // перенаправьте
         }
@@ -117,7 +122,16 @@ export default function App() {
     //
     useEffect(() => {
       checkToken();
-    }, [] ); // ток один раз при первом рендеринге
+      if (loggedIn) {
+        mainApi.getSavedMovies()
+          .then((res) => {
+            //console.log("getSavedMovies", res);
+            setSavedMovies(res);
+          })
+          .catch((err) => {
+          })
+      }
+    }, [loggedIn] ); // ток один раз при первом рендеринге
     // или написать loggedIn
 
   // Кнопка выйти из профиля / разлогиниться
@@ -157,33 +171,43 @@ export default function App() {
           />
 
           <Route path='/movies' element={
-            <>
-              <Header loggedIn={true} onOverlayClick={handleOverlayClick}/>
-              <Movies onOverlayClick={handleOverlayClick}  renderLoading={renderLoading}/>
+            <ProtectedRoute loggedIn={loggedIn}>
+              <Header
+                loggedIn={loggedIn}
+                onOverlayClick={handleOverlayClick}
+              />
+              <Movies renderLoading={renderLoading}/>
               <Footer />
-            </>
+            </ProtectedRoute>
             }
           />
 
           <Route path='/saved-movies' element={
-            <>
-              <Header loggedIn={loggedIn} onOverlayClick={handleOverlayClick}/>
+            <ProtectedRoute loggedIn={loggedIn}>
+              <Header
+                loggedIn={loggedIn}
+                onOverlayClick={handleOverlayClick}
+              />
               <SavedMovies renderLoading={renderLoading}/>
               <Footer />
-            </>
+            </ProtectedRoute >
             }
           />
 
           <Route path='/profile' element={
-            <>
-              <Header onOverlayClick={handleOverlayClick}/>
-              <Profile
+            <ProtectedRoute loggedIn={loggedIn}>
+              <Header
                 loggedIn={loggedIn}
+                onOverlayClick={handleOverlayClick}
+              />
+              <Profile
+                onOverlayClick={handleOverlayClick}
                 onUpdateUser={handleUpdateUser}
                 renderLoading={renderLoading}
                 onSignOut={signOut}
               />
-            </> }
+            </ProtectedRoute>
+            }
           />
 
           <Route path='/signup' element={
@@ -193,6 +217,7 @@ export default function App() {
               <Register
                 handleRegister={handleRegister}
                 registrationForm={registrationForm}
+                onOverlayClick={handleOverlayClick}
                 renderLoading={renderLoading}
               />
             }
@@ -205,13 +230,14 @@ export default function App() {
             <Login
               handleLogin={handleLogin}
               registrationForm={registrationForm}
+              onOverlayClick={handleOverlayClick}
               renderLoading={renderLoading}/>
             }
           />
-
+        
           <Route path='*' element={<NotFound />} />
         </Routes>
-    
+
         <InfoTooltip
           isOpen={isInfoTooltip}
           onClose={closeAllPopups}

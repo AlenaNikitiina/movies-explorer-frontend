@@ -88,6 +88,22 @@ class MainApi {
     .then(this._checkServerAnswer);
   }
 
+  deleteMovie(movieId) {
+    return fetch(`${this._url}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkServerAnswer);
+  }
+
+  // получить сохранённые пользователем фильм
+  getSavedMovies() {
+    return fetch(`${this._url}/movies`, {
+      method: "GET",
+      headers: this._headers,
+    })
+    .then(this._checkServerAnswer);
+  }
+
 }
 
 //// экзмпляр апи

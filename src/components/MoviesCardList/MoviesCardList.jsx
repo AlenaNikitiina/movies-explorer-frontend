@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from 'react-router-dom';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
@@ -12,11 +11,13 @@ export default function MoviesCardList({ movies }) {
 
   const renderMovieCards = () => {
     if (pathname === '/movies' ) {
-    return movies.map(movie =>
+      return movies.map(movie =>
        (
         <MoviesCard
           movie={movie}
+          isAllMoviesPage={true}
           key={movie.id}
+          saveStatus={false}
         />));
     } else {
       console.log("saved movies", movies);
@@ -24,11 +25,14 @@ export default function MoviesCardList({ movies }) {
         (
          <MoviesCard
            movie={movie}
+           isAllMoviesPage={false}
            key={movie.movieId}
+           saveStatus={true}
          />));
     }
 
   };
+  //saveStatus={{ isSaved: true, id: movie._id }}
 
   return(
     <section className='cards'>
