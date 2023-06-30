@@ -1,19 +1,23 @@
-
 import './Login.css';
+import { useState } from 'react';
+import Preloader from '../Preloader/Preloader';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
-export default function Login({ handleLogin, renderLoading }) {
+export default function Login({ handleLogin }) {
+  const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
   const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
 
-  const handleSubmit = (evt) => {
+  function handleSubmit(evt) {
     evt.preventDefault();
+    
     handleLogin(
       values.email,
       values.password
     );
+    setRenderLoading(true);
     resetForm();
-  }
+  };
 
   return(
     <PopupWithForm
@@ -60,6 +64,7 @@ export default function Login({ handleLogin, renderLoading }) {
           />
           <span className='login__error password-error' id='password-error'>{errors.password}</span>
         </label>
+        {renderLoading ? <Preloader /> : ''}
       </section>
     </PopupWithForm>
   )

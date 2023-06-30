@@ -1,17 +1,22 @@
 import './Register.css';
+import { useState } from 'react';
+import Preloader from '../Preloader/Preloader';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
-export default function Register({ handleRegister, renderLoading }) {
+export default function Register({ handleRegister }) {
+  const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
   const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
 
-  const handleSubmit = (evt) => {
+  function handleSubmit(evt) {
     evt.preventDefault();
+    
     handleRegister(
       values.name,
       values.email,
       values.password
     );
+    setRenderLoading(true);
     resetForm();
   }
 
@@ -78,6 +83,7 @@ export default function Register({ handleRegister, renderLoading }) {
           />
           <span className='register__error password-error' id='password-error'>{errors.password}</span>
         </label>
+        {renderLoading ? <Preloader /> : ''}
       </section>
     </PopupWithForm>
   )
