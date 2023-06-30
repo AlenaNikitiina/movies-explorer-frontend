@@ -11,63 +11,23 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
-//import Preloader from '../Preloader/Preloader';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 import mainApi from '../../utils/MainApi';
 //import MoviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { AppMessage } from '../../utils/constants';
 
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser]     = useState({}); // переменную состояния currentUser
-  const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
+  const [currentUser, setCurrentUser] = useState({}); // переменную состояния currentUser
+  const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка. Loader
   const [isInfoTooltip, setIsInfoTooltip] = useState(false); // popup Информационная подсказка
   const [registrationForm, setRegistrationForm] = useState({ status: false, text: "" }); // текст для Информ подсказки
   const [savedMovies, setSavedMovies] = useState([]);
   const navigate = useNavigate();
-
-
-  // Обработчик изменения данных пользователя. имя, почта.В компоненте Profile
-  function handleUpdateUser(name, email) {
-    setRenderLoading(true);
-    mainApi
-      .editingProfile(name, email)
-      .then ((newUserData) => {
-        setCurrentUser(newUserData); // обновили
-        closeAllPopups();
-      })
-      .catch(err => {
-        console.log(AppMessage.UPDATE_ERR, err);
-      })
-      .finally(() => {
-        setRenderLoading(false);
-      })
-  };
-  
-  //console.log('currentUser:', currentUser)
-
-    // Авторизация, в компоненте Login
-    function handleLogin(email, password) {
-      setRenderLoading(true);
-      mainApi.login(email, password)
-        .then((data) => {
-          localStorage.setItem("jwt", data.token); // если ок то добавь в localStorage
-          setLoggedIn(true); // залогинь
-          navigate('/movies', {replace : true} );
-        })
-        .catch(() => {
-          setRegistrationForm({
-            status: false,
-            text: AppMessage.UNSUCCESS,
-          })
-          setIsInfoTooltip(true);
-        })
-        .finally(() => setRenderLoading(false));
-  };
 
   // Регистрация, в компоненте Register и как прошла ?
   function handleRegister( name, email, password ) {
@@ -94,8 +54,47 @@ export default function App() {
       .finally(() => setRenderLoading(false));
   };
 
+  // Авторизация, в компоненте Login
+  function handleLogin(email, password) {
+    setRenderLoading(true);
+    mainApi.login(email, password)
+      .then((data) => {
+        localStorage.setItem("jwt", data.token); // если ок то добавь в localStorage
+        setLoggedIn(true); // залогинь
+        navigate('/movies', {replace : true} );
+      })
+      .catch(() => {
+        setRegistrationForm({
+          status: false,
+          text: AppMessage.UNSUCCESS,
+        })
+        setIsInfoTooltip(true);
+      })
+      .finally(() => setRenderLoading(false));
+  };
+
+  // Обработчик изменения данных пользователя. имя, почта.В компоненте Profile
+  function handleUpdateUser(name, email) {
+    setRenderLoading(true);
+    mainApi
+      .editingProfile(name, email)
+      .then ((newUserData) => {
+        setCurrentUser(newUserData); // обновили
+          closeAllPopups();
+        })
+      .catch(err => {
+        console.log(AppMessage.UPDATE_ERR, err);
+      })
+      .finally(() => {
+        setRenderLoading(false);
+      })
+    };
+    
+    //console.log('currentUser:', currentUser)
+
   // Проверка токена. если есть токен в localStorage,то проверим валидность токена
-  const checkToken = () => {
+//  const checkToken = () => {
+  function checkToken() {
     // jwt это наш токен 
     const jwt = localStorage.getItem('jwt')
     if (jwt) {
@@ -106,9 +105,9 @@ export default function App() {
           //console.log("checkToken res", res)
           setLoggedIn(true); // авторизуем пользователя
           // checkToken заодно выдаёт информацию о нашем пользователе - сохраним её
-          console.log("checkToken res", res)
+          //console.log("checkToken res", res)
           setCurrentUser(res);
-          console.log("checkToken currentUser", currentUser);
+          //console.log("checkToken currentUser", currentUser);
           mainApi.setAuthToken(jwt);
           navigate("/", {replace: true}) // перенаправьте
         }
@@ -119,28 +118,28 @@ export default function App() {
     }
   };
 
-    //
-    useEffect(() => {
-      checkToken();
+  //
+  useEffect(() => {
+    checkToken();
       if (loggedIn) {
         mainApi.getSavedMovies()
-          .then((res) => {
-            //console.log("getSavedMovies", res);
-            setSavedMovies(res);
-          })
-          .catch((err) => {
-          })
+        .then((res) => {
+          //console.log("getSavedMovies", res);
+          setSavedMovies(res);
+        })
+        .catch((err) => {
+        })
       }
-    }, [loggedIn] ); // ток один раз при первом рендеринге
-    // или написать loggedIn
+  }, [loggedIn] ); // ток один раз при первом рендеринге
+  // или написать loggedIn
 
   // Кнопка выйти из профиля / разлогиниться
   function signOut() {
-    console.log('signOut')
+    console.log('signOut');
     localStorage.removeItem('jwt'); // удалить
     setLoggedIn(false); // разлогинить
-    setCurrentUser({});
-    setSavedMovies([]);
+    setCurrentUser({}); //
+    setSavedMovies([]); // сохранен фильмы пустые
     navigate('/');
   };
 
@@ -201,10 +200,10 @@ export default function App() {
                 onOverlayClick={handleOverlayClick}
               />
               <Profile
-                onOverlayClick={handleOverlayClick}
                 onUpdateUser={handleUpdateUser}
-                renderLoading={renderLoading}
                 onSignOut={signOut}
+                registrationForm={registrationForm}
+                onOverlayClick={handleOverlayClick}
               />
             </ProtectedRoute>
             }
@@ -212,26 +211,25 @@ export default function App() {
 
           <Route path='/signup' element={
             loggedIn ?
-            <Navigate to='/movies' />
+              <Navigate to='/movies' />
               :
               <Register
                 handleRegister={handleRegister}
                 registrationForm={registrationForm}
                 onOverlayClick={handleOverlayClick}
-                renderLoading={renderLoading}
               />
             }
           />
 
           <Route path='/signin' element={
             loggedIn ?
-            <Navigate to='/movies' />
+              <Navigate to='/movies' />
               :
-            <Login
-              handleLogin={handleLogin}
-              registrationForm={registrationForm}
-              onOverlayClick={handleOverlayClick}
-              renderLoading={renderLoading}/>
+              <Login
+                handleLogin={handleLogin}
+                registrationForm={registrationForm}
+                onOverlayClick={handleOverlayClick}
+              />
             }
           />
         
@@ -248,7 +246,3 @@ export default function App() {
     </CurrentUserContext.Provider>
   )
 }
-
-/*
-
-            */

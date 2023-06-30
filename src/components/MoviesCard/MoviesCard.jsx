@@ -50,21 +50,15 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
   };
 
   // удалить фильм
-  const handleDeleteMovie = () => {
-    console.log("попытка удалить фильм");
-    //setIsSaved(false);
-    //mainApi.saveMovie(rebuildMovieForSave(movie))
-    console.log(movie);
+  function handleDeleteMovie() {
+    //console.log(movie);
     mainApi.deleteMovie(movie._id)
       .then((data) => {
-        console.log("from then handleDeleteMovie", data);
+        //console.log("from then handleDeleteMovie", data);
         setSavedMovies(savedMovies.filter((item) => {
           return !(item._id === movie._id);
         }));
         setIsSaved(false);
-
-//        setSavedMovies([ ...savedMovies, data ]);
-//        setIsSaved(true);
       })
       .catch(err => {
         console.log("Не получилось удалить фильм", err);
@@ -94,25 +88,13 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
         </a>
       
         <button
-          //className={ isSaved ? 'card__saved-btn button' : 'card__save-btn button'}
-          //className={ isSaved ? 'card__saved-btn button' : 'card__delete-btn'}
           className={ isAllMoviesPage
                         ? (isSaved ? 'card__saved-btn button' : 'card__save-btn button')
                         : 'card__delete-btn'}
           onClick={isSaved ? handleDeleteMovie : handleSaveMovie}
-          //onClick={isSaved ? 'card__delete-btn' : 'card_saved-btn'}
-          aria-label='сохранить фильм'
+          aria-label='сохранить фильм или удалить'
           type='button'>
         </button>
     </li>
   )
 }
-
-
-/*    //const { savedMovies }= useContext(CurrentUserContext);
-
-    if (pathname === '/saved-movies') {
-      console.log("saved-movies", movie);
-      console.log("all saved movies", savedMovies);
-    }*/
-  

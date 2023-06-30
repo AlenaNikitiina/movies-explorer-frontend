@@ -20,7 +20,6 @@ export default function MoviesCardList({ movies }) {
           saveStatus={false}
         />));
     } else {
-      console.log("saved movies", movies);
       return movies.map(movie =>
         (
          <MoviesCard

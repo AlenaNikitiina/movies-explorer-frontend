@@ -2,7 +2,7 @@ import './FilterCheckbox.css';
 
 export  default function FilterCheckbox() {
 
-  const handleСheck = () => {
+  function handleSwitch() {
     console.log('switch Checkbox');
   }
 
@@ -12,8 +12,7 @@ export  default function FilterCheckbox() {
         <input
           className='filter-checkbox__input'
           type='checkbox'
-          /*checked={isСheck}*/
-          onChange={handleСheck}
+          onChange={handleSwitch}
         />
         <span className='filter-checkbox__switch'/>
         <span className='filter-checkbox__text'>Короткометражки</span>

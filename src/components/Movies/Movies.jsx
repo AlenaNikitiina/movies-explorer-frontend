@@ -8,7 +8,9 @@ import moviesApi from '../../utils/MoviesApi';
 
 export default function Movies () {
   //const { savedMovies }= useContext(CurrentUserContext);
-  const getAllMovies = () => {
+  //const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
+  
+  function getAllMovies() {
     moviesApi.getMovies()
       .then( (res) =>{
         if (res)
@@ -25,11 +27,10 @@ export default function Movies () {
   return (
     <main>
       <SearchForm />
-     
       <MoviesCardList movies={movies} />
     </main>
   )
 }
 
 //  {renderLoading ? <Preloader /> : renderMoviesSection()}
-// {renderLoading ? <Preloader /> : ''}
+// {renderLoading ? <Preloader /> : ''}    add

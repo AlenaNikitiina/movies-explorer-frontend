@@ -1,36 +1,41 @@
 import './Profile.css';
-import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
+import Preloader from '../Preloader/Preloader';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
-export default function Profile({ onUpdateUser, onSignOut, onOverlayClick }) {
-  const currentUser = useContext(CurrentUserContext);
+export default function Profile({ onUpdateUser, registrationForm, onSignOut, onOverlayClick }) {
+  // задаём контекст, чтобы извлечь из него глобальные переменные
+  const currentContext = useContext(CurrentUserContext);
+  const [currentUser, setCurrentUser] = useState(currentContext.currentUser);
   const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
-  const [isEdit, setIsEdit] = useState(false);
+
+  const [isEdit, setIsEdit] = useState(false); // редактируем инфу о себе
   const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
   
-  const handleSubmit = (evt) => {
+  function handleSubmit(evt) {
     console.log('handleSubmit');
     evt.preventDefault();
+
     setRenderLoading(true);
     onUpdateUser(
      values.name,
      values.email,
     );
     //resetForm();
-  }
+  };
 
-  const handleEditButton = (evt) => {
+  // Редактировать профиль
+  function handleEditButton(evt) {
     console.log('handleEditButton');
     evt.preventDefault();
+    
     setIsEdit(true);
     onUpdateUser(
       values.name,
       values.email
     );
-    //resetForm();
-  }
+  };
 
   /*
   function f () {
@@ -41,7 +46,6 @@ export default function Profile({ onUpdateUser, onSignOut, onOverlayClick }) {
   f ();
   */
 
-  
   const isButtonActive = isFormValid
   && !renderLoading
   && (values.name !== values.username || values.email !== values.email);
@@ -110,7 +114,6 @@ export default function Profile({ onUpdateUser, onSignOut, onOverlayClick }) {
         </div>
         <span className='profile__error email-error' id='email-error'>{errors.email}</span>
 
-
         {isEdit ?
           <button type='submit' className='profile__save-button button' disabled={!isButtonActive}>Сохранить</button>
           :
@@ -120,118 +123,8 @@ export default function Profile({ onUpdateUser, onSignOut, onOverlayClick }) {
           <button type='button' className='profile__link button' onClick={onSignOut}>Выйти из аккаунта</button>
           : ''
         }
+        {renderLoading ? <Preloader /> : ''}
       </form>
     </section>
   )
 }
-
-
-/*
-import './Profile.css';
-import { Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import useFormWithValidation from '../../hook/useFormWithValidation.js';
-
-export default function Profile({ onUpdateUser, renderLoading, onSignOut, onOverlayClick }) {
-  const currentUser = useContext(CurrentUserContext);
-  const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
-  
-  const handleSubmit = (evt) => {
-    console.log('handleSubmit');
-    evt.preventDefault();
-    onUpdateUser(
-     values.name,
-     values.email,
-    );
-    //resetForm();
-  }
-
-  const handleEditButton = (evt) => {
-    console.log('handleEditButton');
-    evt.preventDefault();
-
-    onUpdateUser(
-      values.name,
-      values.email
-    );
-    //resetForm();
-  }
-
-  /*
-  function f () {
-    console.log('ff function', currentUser);
-    console.log('currentUser', currentUser.name, currentUser.email);
-    console.log('values', values.name, values.email);
-  }
-  f ();
-  */
-
-/*
-  // ????
-  useEffect(() => {
-    if (currentUser) {
-      resetForm(currentUser, {}, true);
-    }
-  },[currentUser, resetForm] )
-
-
-  return(
-    <section className='profile' >
-      <h1 className='profile__title'>{`Привет, ${currentUser.name}!`}</h1>
-      <form
-        className='profile__form'
-        onSubmit={handleSubmit}
-        //renderLoading={renderLoading}
-        //isFormValid={isFormValid}
-        onClick={onOverlayClick}
-      >
-        <div className='profile__cell'>
-          <label className='profile__label' htmlFor='name'>Имя</label>
-          <input
-            className='profile__input'
-            type='text'
-            id='name'
-            required
-            minLength={2}
-            maxLength={30}
-            placeholder='Имя'
-            name='name'
-            //pattern='[a-zA-Za-яА-Я -]{2,30}'
-            value={values.name || ''}
-            onChange={handleChange}
-          />
-        </div>
-        <span className='profile__error name-error' id='name-error'>{errors.name}</span>
-
-        <div className='profile__cell'>
-          <label className='profile__label' htmlFor='email'>E-mail</label>
-          <input
-            className='profile__input'
-            type='email'
-            id='email'
-            required
-            minLength={4}
-            maxLength={40}
-            //pattern='^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$'
-            placeholder='pochta@yandex.ru'
-            name='email'
-            value={values.email || ''}
-            onChange={handleChange}
-          />
-        </div>
-        <span className='profile__error email-error' id='email-error'>{errors.email}</span>
-  
-        <button
-          className='profile__edit-button button'
-          type='button'
-          disabled={!isFormValid}
-          onClick={handleEditButton}
-            >Редактировать
-        </button>
-        <Link to='/' className='profile__link link' onClick={onSignOut}>Выйти из аккаунта</Link>
-      </form>
-    </section>
-  )
-}
-*/
