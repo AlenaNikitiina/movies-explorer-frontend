@@ -88,12 +88,9 @@ export default function App() {
       .finally(() => {
         setRenderLoading(false);
       })
-    };
-    
-    //console.log('currentUser:', currentUser)
+  };
 
   // Проверка токена. если есть токен в localStorage,то проверим валидность токена
-//  const checkToken = () => {
   function checkToken() {
     // jwt это наш токен 
     const jwt = localStorage.getItem('jwt')
@@ -105,7 +102,6 @@ export default function App() {
           //console.log("checkToken res", res)
           setLoggedIn(true); // авторизуем пользователя
           // checkToken заодно выдаёт информацию о нашем пользователе - сохраним её
-          //console.log("checkToken res", res)
           setCurrentUser(res);
           //console.log("checkToken currentUser", currentUser);
           mainApi.setAuthToken(jwt);

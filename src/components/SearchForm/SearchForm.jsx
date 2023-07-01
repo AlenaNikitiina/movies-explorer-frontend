@@ -1,16 +1,28 @@
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import useFormWithValidation from '../../hook/useFormWithValidation';
 
-export default function SearchForm() {
+export default function SearchForm({handleSubmitSearch, handleChangeCheckbox}) {
+
+  const {
+    values,
+    setValues,
+    handleChange,
+    isFormValid,
+    setIsFormValid,
+  } = useFormWithValidation();
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    console.log('handleFormSubmit');
+    console.log('handleFormSubmit', values['search-input']);
+    handleSubmitSearch(values['search-input']);
   }
 
+  /*
   const handleChange = () => {
     console.log('Change input');
   }
+  */
 
   return(
     <section className='search-form'>
@@ -29,7 +41,7 @@ export default function SearchForm() {
             />
           <button className='search-form__button button' type='submit'>Найти</button>
         </form>
-        <FilterCheckbox />
+        <FilterCheckbox handleCheckbox={handleChangeCheckbox}/>
       </div>
     </section>
   )

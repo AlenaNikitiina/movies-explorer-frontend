@@ -1,5 +1,5 @@
 import './MoviesCard.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -18,7 +18,7 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
   // сохранить фильм
   function handleSaveMovie () {
     setRenderLoading(true);
-    //console.log('1 handleSaveMovie', '2', savedMovies, '3', movie)
+
     const rebuildMovieForSave = (src) =>
     { //JSON.stringify
       const rebuild = structuredClone(src);
@@ -34,7 +34,7 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
 
     mainApi.saveMovie(rebuildMovieForSave(movie))
       .then((data) => {
-        console.log("from then handleSaveMovie", data);
+        //console.log("from then handleSaveMovie", data);
         setSavedMovies([ ...savedMovies, data ]);
         setIsSaved(true);
         setSaveId(data._id);
@@ -53,10 +53,8 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
 
   // удалить фильм
   function handleDeleteMovie() {
-    console.log(movie);
     mainApi.deleteMovie(saveId)
       .then((data) => {
-        //console.log("from then handleDeleteMovie", data);
         setSavedMovies(savedMovies.filter((item) => {
           return !(item._id === saveId);
         }));
