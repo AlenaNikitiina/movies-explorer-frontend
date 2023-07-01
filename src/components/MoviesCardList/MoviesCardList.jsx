@@ -15,9 +15,7 @@ export default function MoviesCardList({ movies }) {
   }
 
   const checkIsSaved = (movie) => {
-    //console.log(movie);
-    const findedMovie = savedMovies.find((item) => item.movieId === movie.movieId);
-    //console.log('savedMovies', savedMovies, );
+    const findedMovie = savedMovies.find((item) => item.movieId === (movie.movieId || movie.id));
     return findedMovie
       ? true//{ isSaved: true, id: targetMovie._id }
       : false//{ isSaved: false, id: '' }

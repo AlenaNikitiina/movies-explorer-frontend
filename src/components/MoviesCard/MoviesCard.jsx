@@ -27,13 +27,13 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
       delete rebuild.id;
       delete rebuild.created_at;
       delete rebuild.updated_at;
+      //console.log("rebuildMovieForSave, ", rebuild, src);
       return rebuild;
     };
 
     mainApi.saveMovie(rebuildMovieForSave(movie))
       .then((data) => {
         console.log("from then handleSaveMovie", data);
-        console.log('setSavedMovies', setSavedMovies);
         setSavedMovies([ ...savedMovies, data ]);
         setIsSaved(true);
       })
