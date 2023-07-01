@@ -51,7 +51,7 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
 
   // удалить фильм
   function handleDeleteMovie() {
-    //console.log(movie);
+    console.log(movie);
     mainApi.deleteMovie(movie._id)
       .then((data) => {
         //console.log("from then handleDeleteMovie", data);
