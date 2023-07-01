@@ -9,7 +9,8 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
   
   const { savedMovies, setSavedMovies }= useContext(CurrentUserContext);
 //  const [isSaved, setIsSaved] = useState(false); // сохранен ли фильм
-  const [isSaved, setIsSaved] = useState(saveStatus); // сохранен ли фильм
+  const [isSaved, setIsSaved] = useState(saveStatus.isSaved); // сохранен ли фильм
+  const [saveId, setSaveId] = useState(saveStatus.id);
   const [renderLoading, setRenderLoading] = useState(false) // идет сохранение/ загрузка
   const imageSource = 'https://api.nomoreparties.co'; // пока не связан с беком
   const { pathname } = useLocation();
@@ -36,6 +37,7 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
         console.log("from then handleSaveMovie", data);
         setSavedMovies([ ...savedMovies, data ]);
         setIsSaved(true);
+        setSaveId(data._id);
       })
       .catch(err => {
         console.log("Не получилось сохранить фильм", err);
@@ -52,11 +54,11 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
   // удалить фильм
   function handleDeleteMovie() {
     console.log(movie);
-    mainApi.deleteMovie(movie._id)
+    mainApi.deleteMovie(saveId)
       .then((data) => {
         //console.log("from then handleDeleteMovie", data);
         setSavedMovies(savedMovies.filter((item) => {
-          return !(item._id === movie._id);
+          return !(item._id === saveId);
         }));
         setIsSaved(false);
       })

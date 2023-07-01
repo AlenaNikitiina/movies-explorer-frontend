@@ -17,8 +17,10 @@ export default function MoviesCardList({ movies }) {
   const checkIsSaved = (movie) => {
     const findedMovie = savedMovies.find((item) => item.movieId === (movie.movieId || movie.id));
     return findedMovie
-      ? true//{ isSaved: true, id: targetMovie._id }
-      : false//{ isSaved: false, id: '' }
+      //? true//{ isSaved: true, id: targetMovie._id }
+      //: false//{ isSaved: false, id: '' }
+      ? { isSaved: true, id: findedMovie._id }
+      : { isSaved: false, id: '' }
   };
 
   const renderMovieCards = () => {
@@ -38,7 +40,7 @@ export default function MoviesCardList({ movies }) {
            movie={movie}
            isAllMoviesPage={false}
            key={movie.movieId}
-           saveStatus={true}
+           saveStatus={{isSaved: true, id: movie._id}}
          />));
     }
 
