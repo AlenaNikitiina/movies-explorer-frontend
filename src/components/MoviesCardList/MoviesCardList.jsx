@@ -7,13 +7,11 @@ import './MoviesCardList.css';
 
 export default function MoviesCardList({ movies }) {
   const { pathname } = useLocation();
-
   const currentContext = useContext(CurrentUserContext);
   const [savedMovies, setsavedMovies] = useState(currentContext.savedMovies);
   const [cardsCountToShow, setCardsCountToShow] = useState(0);
   const [isMoreButton, setIsMoreButton] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
   const handleResizeWindow = () => setWindowWidth(window.innerWidth);
 
   useEffect(() => {
@@ -45,7 +43,6 @@ export default function MoviesCardList({ movies }) {
     setCardsCountToShow((current) => {
       return current + (windowWidth <= Breakpoint.TABLET ? 2 : 3);
     })
-    console.log('Show More');
   }
 
   const checkIsSaved = (movie) => {
@@ -64,7 +61,8 @@ export default function MoviesCardList({ movies }) {
            isAllMoviesPage={true}
            key={movie.id}
            saveStatus={checkIsSaved(movie)}
-         />));
+         />
+        ));
     }
 
     function renderSavedMoviesPage(movies) {
@@ -75,7 +73,8 @@ export default function MoviesCardList({ movies }) {
            isAllMoviesPage={false}
            key={movie.movieId}
            saveStatus={{isSaved: true, id: movie._id}}
-         />));
+         />
+        ));
     }
 
     return (pathname === '/movies') ? renderAllMoviesPage(movies) : renderSavedMoviesPage(movies);

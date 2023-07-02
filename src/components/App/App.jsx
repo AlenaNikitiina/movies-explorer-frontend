@@ -15,7 +15,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 import mainApi from '../../utils/MainApi';
-//import MoviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { AppMessage } from '../../utils/constants';
 
@@ -99,11 +98,9 @@ export default function App() {
       .checkToken(jwt)
       .then((res) => {
         if (res) {
-          //console.log("checkToken res", res)
           setLoggedIn(true); // авторизуем пользователя
           // checkToken заодно выдаёт информацию о нашем пользователе - сохраним её
           setCurrentUser(res);
-          //console.log("checkToken currentUser", currentUser);
           mainApi.setAuthToken(jwt);
           navigate("/", {replace: true}) // перенаправьте
         }
@@ -120,7 +117,6 @@ export default function App() {
       if (loggedIn) {
         mainApi.getSavedMovies()
         .then((res) => {
-          //console.log("getSavedMovies", res);
           setSavedMovies(res);
         })
         .catch((err) => {
@@ -149,7 +145,6 @@ export default function App() {
   function closeAllPopups () {
     setIsInfoTooltip (false);
     setRenderLoading(false);
-    //burger
   };
 
   return (

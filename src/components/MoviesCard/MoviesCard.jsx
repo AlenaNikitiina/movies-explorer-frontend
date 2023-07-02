@@ -3,16 +3,15 @@ import { useContext, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { Message } from '../../utils/constants';
 
 export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
   const { nameRU, duration, trailerLink } = movie;
-  
   const { savedMovies, setSavedMovies }= useContext(CurrentUserContext);
-//  const [isSaved, setIsSaved] = useState(false); // сохранен ли фильм
   const [isSaved, setIsSaved] = useState(saveStatus.isSaved); // сохранен ли фильм
   const [saveId, setSaveId] = useState(saveStatus.id);
   const [renderLoading, setRenderLoading] = useState(false) // идет сохранение/ загрузка
-  const imageSource = 'https://api.nomoreparties.co'; // пока не связан с беком
+  const imageSource = 'https://api.nomoreparties.co';
   const { pathname } = useLocation();
 
   // сохранить фильм
@@ -28,19 +27,17 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
       delete rebuild.id;
       delete rebuild.created_at;
       delete rebuild.updated_at;
-      //console.log("rebuildMovieForSave, ", rebuild, src);
       return rebuild;
     };
 
     mainApi.saveMovie(rebuildMovieForSave(movie))
       .then((data) => {
-        //console.log("from then handleSaveMovie", data);
         setSavedMovies([ ...savedMovies, data ]);
         setIsSaved(true);
         setSaveId(data._id);
       })
       .catch(err => {
-        console.log("Не получилось сохранить фильм", err);
+        console.log(Message.CANT_SAVE, err);
       })
       .finally(() => {
         setRenderLoading(false);
@@ -61,7 +58,7 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
         setIsSaved(false);
       })
       .catch(err => {
-        console.log("Не получилось удалить фильм", err);
+        console.log(Message.CANT_DELETE, err);
       })
       .finally(() => {
         setRenderLoading(false);
@@ -89,12 +86,12 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
       
         <button
           className={ isAllMoviesPage
-                        ? (isSaved ? 'card__saved-btn button' : 'card__save-btn button')
-                        : 'card__delete-btn'}
+                      ? (isSaved ? 'card__saved-btn button' : 'card__save-btn button')
+                      : 'card__delete-btn'}
           onClick={isSaved ? handleDeleteMovie : handleSaveMovie}
-          aria-label='сохранить фильм или удалить'
-          type='button'>
-        </button>
+          aria-label='сохранить или удалить фильм'
+          type='button'
+        />
     </li>
   )
 }

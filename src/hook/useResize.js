@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {
   SCREEN_SM, SCREEN_MD, SCREEN_LG, SCREEN_XL, SCREEN_XXL,
-} from '../../../EXAMPLA_MOVIES/src/utils/constants';
+} from '../../src/utils/constants'; 
 
 export const useResize = () => {
   const [width, setWidth] = useState(window.innerWidth);
