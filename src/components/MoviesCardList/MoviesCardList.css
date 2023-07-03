@@ -21,6 +21,12 @@
   margin: 0;
 }
 
+.cards__search-message{
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-grey);
+}
+
 .button {
   text-align: center;
   cursor: pointer;

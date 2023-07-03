@@ -26,7 +26,7 @@ export default function Movies () {
   }, []);
 
   const getFilteredMovies = (keyWord, isShortMovies) => {
-
+//  console.log('Ничего не найдено');
     function setupFilteredFilms(movies) {
       setSearchedMovies(movies);
       localStorage.setItem('storageSearchResult', JSON.stringify(movies));
@@ -76,6 +76,7 @@ export default function Movies () {
       <SearchForm
         handleSubmitSearch={handleSubmitSearch}
         handleChangeCheckbox={handleChangeCheckbox}
+        showError={setErrorMessage}
       />
       {renderLoading ? <Preloader /> : ''} 
       <MoviesCardList movies={searchedMovies} />

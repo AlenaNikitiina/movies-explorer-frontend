@@ -7,7 +7,6 @@ export default function FilterCheckbox({ handleCheckbox }) {
   const [isChecked, setIsChecked] = useState(false);
 
   function handleSwitch() {
-    console.log('switch Checkbox');
     setIsChecked(!isChecked);
     // берём инвертированное состояние isChecked, т.к. setIsChecked асинхронный
     // и там будет некорректное значение

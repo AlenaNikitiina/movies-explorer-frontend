@@ -20,14 +20,6 @@ export const Message = {
   REQUEST_ERROR: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
 }
 
-// const-breakpoints.js
-export const SCREEN_SM = 576;
-export const SCREEN_MD = 768;
-export const SCREEN_LG = 992;
-export const SCREEN_XL = 1200;
-export const SCREEN_XXL = 1400;
-
-
 export const Breakpoint = {
   MOBILE: 480,
   TABLET: 1010,

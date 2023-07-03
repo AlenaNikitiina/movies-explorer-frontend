@@ -44,4 +44,4 @@ export default function SavedMovies({ loggedIn }) {
       <MoviesCardList movies={movies} loggedIn={loggedIn} />
     </main>
   )
-}
+};

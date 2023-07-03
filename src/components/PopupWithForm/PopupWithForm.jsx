@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import './PopupWithForm.css';
 import logo from '../../images/logo.svg';
 
-export default function PopupWithForm ({ onSubmit, isFormValid, name, title, children, buttonText, linkText, question, link }) {
+export default function PopupWithForm ({
+  onSubmit, isFormValid, name, title, children, buttonText, linkText, question, link }) {
 
   return (
     <section className='popup'>
@@ -35,5 +36,3 @@ export default function PopupWithForm ({ onSubmit, isFormValid, name, title, chi
     </section>
   )
 }
-
-//buttonText={renderLoading ? `Сохранение...` : `Сохранить`}

@@ -11,16 +11,26 @@ export default function Navigation({ loggedIn, onOverlayClick }) {
     setIsBurgerOpen(!isBurgerOpen);
   };
 
-  //<header className={ loggedIn ? 'header_white' : 'header' } >
-
   return (
     <nav className='navigation' onClick={onOverlayClick}>
       { loggedIn
       ? (
         <>
-          <div className={ location.pathname === '/'                                   ? 'navigation__content' : 'navigation__content'}>
-            <Link to='/movies' className={ location.pathname === '/movies'             ? 'navigation__link_active link' : 'navigation__link link'}>Фильмы</Link>
-            <Link to='/saved-movies' className={ location.pathname === '/saved-movies' ? 'navigation__link_active link' : 'navigation__link link'}>Сохраненные фильмы</Link>
+          <div className={ location.pathname === '/' ? 'navigation__content' : 'navigation__content'}>
+          
+            <Link to='/movies'
+              className={ location.pathname === '/movies'
+              ? 'navigation__link_active link'
+              : 'navigation__link link'}
+            >Фильмы
+            </Link>
+          
+            <Link to='/saved-movies'
+              className={ location.pathname === '/saved-movies'
+              ? 'navigation__link_active link'
+              : 'navigation__link link'}
+            >Сохраненные фильмы
+            </Link>
 
             <Link to='/profile' className='navigation__account-link link'>Аккаунт</Link>
           </div>
@@ -42,6 +52,3 @@ export default function Navigation({ loggedIn, onOverlayClick }) {
     </nav>
   )
 }
-
-  //const [d, setD] = useState(false); // for nav-tab__item_active
-  // className={ d ? 'nav-tab__item_active' : 'nav-tab__item link' }

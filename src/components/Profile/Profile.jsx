@@ -22,7 +22,12 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
      values.name,
      values.email,
     );
+    setRenderLoading(false);
     //resetForm();
+    setCurrentUser(currentUser);
+    console.log("currentUser" ,currentUser);
+    setIsEdit(false);
+    resetForm(currentUser, {}, true);
   };
 
   // Редактировать профиль
@@ -37,26 +42,9 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
     );
   };
 
-  /*
-  function f () {
-    console.log('ff function', currentUser);
-    console.log('currentUser', currentUser.name, currentUser.email);
-    console.log('values', values.name, values.email);
-  }
-  f ();
-  */
-
   const isButtonActive = isFormValid
   && !renderLoading
   && (values.name !== values.username || values.email !== values.email);
-
-
-/*
-  const isButtonActive =
-    !isFormValid ||
-    (currentUser.name === values.name &&
-      currentUser.email === values.email);
-*/
 
   // ????
   useEffect(() => {

@@ -18,7 +18,6 @@ import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { AppMessage } from '../../utils/constants';
 
-
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({}); // переменную состояния currentUser
@@ -29,7 +28,7 @@ export default function App() {
   const navigate = useNavigate();
 
   // Регистрация, в компоненте Register и как прошла ?
-  function handleRegister( name, email, password ) {
+  function handleRegister(name, email, password) {
     setRenderLoading(true);
     mainApi.register(name, email, password)
       .then((res) => {

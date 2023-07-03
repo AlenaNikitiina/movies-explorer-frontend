@@ -67,31 +67,31 @@ export default function MoviesCard({ movie, isAllMoviesPage, saveStatus }) {
 
   return (
     <li className='card__element'>
-        <div className='card__info'>
-          <p className='card__title'>{nameRU}</p>
-          <p className='card__duration'>{`${duration}${' минут'}`}</p>
-        </div>
+      <div className='card__info'>
+        <p className='card__title'>{nameRU}</p>
+        <p className='card__duration'>{`${duration}${' минут'}`}</p>
+      </div>
       
-        <a
-          className='card__link link'
-          href={trailerLink}
-          target='blank'
-        >
-          <img
-            className='card__photo'
-            src={getMovieUrl(movie)}
-            alt={nameRU}
-          />
-        </a>
-      
-        <button
-          className={ isAllMoviesPage
-                      ? (isSaved ? 'card__saved-btn button' : 'card__save-btn button')
-                      : 'card__delete-btn'}
-          onClick={isSaved ? handleDeleteMovie : handleSaveMovie}
-          aria-label='сохранить или удалить фильм'
-          type='button'
+      <a
+        className='card__link link'
+        href={trailerLink}
+        target='blank'
+      >
+        <img
+          className='card__photo'
+          src={getMovieUrl(movie)}
+          alt={nameRU}
         />
+      </a>
+      
+      <button
+        className={ isAllMoviesPage
+                    ? (isSaved ? 'card__saved-btn button' : 'card__save-btn button')
+                    : 'card__delete-btn'}
+        onClick={isSaved ? handleDeleteMovie : handleSaveMovie}
+        aria-label='сохранить или удалить фильм'
+        type='button'
+      />
     </li>
   )
 }

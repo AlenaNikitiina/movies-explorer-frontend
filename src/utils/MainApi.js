@@ -20,7 +20,6 @@ class MainApi {
   }
 
   setAuthToken (token) {
-    //console.log('setAuthToken', token);
     this._headers.Authorization = `Bearer ${token}`;
   }
 
@@ -31,7 +30,6 @@ class MainApi {
       headers: {
         ...this._headers,
         Accept: "application/json",
-        //Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: newName,

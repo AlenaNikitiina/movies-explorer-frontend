@@ -3,8 +3,9 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import useFormWithValidation from '../../hook/useFormWithValidation';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Message } from '../../utils/constants';
 
-export default function SearchForm({handleSubmitSearch, handleChangeCheckbox}) {
+export default function SearchForm({handleSubmitSearch, handleChangeCheckbox, showError }) {
   const { pathname } = useLocation();
   const {
     values,
@@ -16,13 +17,12 @@ export default function SearchForm({handleSubmitSearch, handleChangeCheckbox}) {
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    //console.log('handleFormSubmit', values['search-input']);
-    handleSubmitSearch(values['search-input']);
+   // handleSubmitSearch(values['search-input']);
+   isFormValid ? handleSubmitSearch(values['search-input']) : showError(Message.NOT_FOUND);
   }
 
   useEffect(() => {
     if (pathname === '/movies') {
-      console.log("setValues", setValues);
       const storageKeyWord = localStorage.getItem('storageKeyWord');
       storageKeyWord && setValues({keyWord: storageKeyWord});
       setIsFormValid(true);
