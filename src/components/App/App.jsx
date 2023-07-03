@@ -28,7 +28,7 @@ export default function App() {
   const navigate = useNavigate();
 
   // Регистрация, в компоненте Register и как прошла ?
-  function handleRegister(name, email, password) {
+  const handleRegister = (name, email, password) => {
     setRenderLoading(true);
     mainApi.register(name, email, password)
       .then((res) => {
@@ -53,7 +53,7 @@ export default function App() {
   };
 
   // Авторизация, в компоненте Login
-  function handleLogin(email, password) {
+  const handleLogin = (email, password) => {
     setRenderLoading(true);
     mainApi.login(email, password)
       .then((data) => {
@@ -69,23 +69,6 @@ export default function App() {
         setIsInfoTooltip(true);
       })
       .finally(() => setRenderLoading(false));
-  };
-
-  // Обработчик изменения данных пользователя. имя, почта.В компоненте Profile
-  function handleUpdateUser(name, email) {
-    setRenderLoading(true);
-    mainApi
-      .editingProfile(name, email)
-      .then ((newUserData) => {
-        setCurrentUser(newUserData); // обновили
-          closeAllPopups();
-        })
-      .catch(err => {
-        console.log(AppMessage.UPDATE_ERR, err);
-      })
-      .finally(() => {
-        setRenderLoading(false);
-      })
   };
 
   // Проверка токена. если есть токен в localStorage,то проверим валидность токена
@@ -113,14 +96,14 @@ export default function App() {
   //
   useEffect(() => {
     checkToken();
-      if (loggedIn) {
-        mainApi.getSavedMovies()
-        .then((res) => {
-          setSavedMovies(res);
-        })
-        .catch((err) => {
-        })
-      }
+    if (loggedIn) {
+      mainApi.getSavedMovies()
+      .then((res) => {
+        setSavedMovies(res);
+      })
+      .catch((err) => {
+      })
+    }
   }, [loggedIn] ); // ток один раз при первом рендеринге
   // или написать loggedIn
 
@@ -190,7 +173,6 @@ export default function App() {
                 onOverlayClick={handleOverlayClick}
               />
               <Profile
-                onUpdateUser={handleUpdateUser}
                 onSignOut={signOut}
                 registrationForm={registrationForm}
                 onOverlayClick={handleOverlayClick}

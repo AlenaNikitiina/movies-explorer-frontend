@@ -3,8 +3,10 @@ import { useContext, useEffect, useState } from 'react';
 import Preloader from '../Preloader/Preloader';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
+import mainApi from '../../utils/MainApi';
+import { AppMessage } from '../../utils/constants';
 
-export default function Profile({ onUpdateUser, registrationForm, onSignOut, onOverlayClick }) {
+export default function Profile({ onSignOut, onOverlayClick }) {
   // задаём контекст, чтобы извлечь из него глобальные переменные
   const currentContext = useContext(CurrentUserContext);
   const [currentUser, setCurrentUser] = useState(currentContext.currentUser);
@@ -12,9 +14,25 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
 
   const [isEdit, setIsEdit] = useState(false); // редактируем инфу о себе
   const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
-  
+
+  // Обработчик изменения данных пользователя. имя, почта.
+  function onUpdateUser(name, email) {
+    setRenderLoading(true);
+    mainApi
+      .editingProfile(name, email)
+      .then ((newUserData) => {
+        setCurrentUser(newUserData); // обновили
+      })
+      .catch(err => {
+        console.log(AppMessage.UPDATE_ERR, err);
+      })
+      .finally(() => {
+        setRenderLoading(false);
+      })
+  };
+
+  //
   function handleSubmit(evt) {
-    console.log('handleSubmit');
     evt.preventDefault();
 
     setRenderLoading(true);
@@ -23,16 +41,13 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
      values.email,
     );
     setRenderLoading(false);
-    //resetForm();
     setCurrentUser(currentUser);
-    console.log("currentUser" ,currentUser);
     setIsEdit(false);
     resetForm(currentUser, {}, true);
   };
 
   // Редактировать профиль
   function handleEditButton(evt) {
-    console.log('handleEditButton');
     evt.preventDefault();
     
     setIsEdit(true);
@@ -46,7 +61,7 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
   && !renderLoading
   && (values.name !== values.username || values.email !== values.email);
 
-  // ????
+  //
   useEffect(() => {
     if (currentUser) {
       resetForm(currentUser, {}, true);
@@ -61,7 +76,7 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
         className='profile__form'
         onSubmit={handleSubmit}
         //renderLoading={renderLoading}
-        //isFormValid={isFormValid}
+        isFormValid={isFormValid}
         onClick={onOverlayClick}
       >
         <div className='profile__cell'>
@@ -75,7 +90,7 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
             maxLength={30}
             placeholder='Имя'
             name='name'
-            //pattern='[a-zA-Za-яА-Я -]{2,30}'
+            pattern='[a-zA-Za-яА-Я -]{2,30}'
             value={values.name || ''}
             onChange={handleChange}
             //disabled={renderLoading || !isEdit}
@@ -92,14 +107,15 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
             required
             minLength={4}
             maxLength={40}
-            //pattern='^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$'
-            //placeholder='pochta@yandex.ru'
+            pattern='^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$'
+            placeholder='pochta@yandex.ru'
             name='email'
             value={values.email || ''}
             onChange={handleChange}
             //disabled={renderLoading || !isEdit}
           />
         </div>
+        {renderLoading ? <Preloader /> : ''}
         <span className='profile__error email-error' id='email-error'>{errors.email}</span>
 
         {isEdit ?
@@ -111,7 +127,6 @@ export default function Profile({ onUpdateUser, registrationForm, onSignOut, onO
           <button type='button' className='profile__link button' onClick={onSignOut}>Выйти из аккаунта</button>
           : ''
         }
-        {renderLoading ? <Preloader /> : ''}
       </form>
     </section>
   )

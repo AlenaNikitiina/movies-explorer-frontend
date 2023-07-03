@@ -24,10 +24,10 @@ export default function SearchForm({handleSubmitSearch, handleChangeCheckbox, sh
   useEffect(() => {
     if (pathname === '/movies') {
       const storageKeyWord = localStorage.getItem('storageKeyWord');
-      storageKeyWord && setValues({keyWord: storageKeyWord});
+      storageKeyWord && setValues({'search-input': storageKeyWord});
       setIsFormValid(true);
     } else {
-      setValues({keyWord: ''});
+      setValues({'search-input': ''});
     }
   }, [pathname]);
 
