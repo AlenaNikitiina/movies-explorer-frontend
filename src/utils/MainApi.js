@@ -1,4 +1,4 @@
-import { BASE_URL } from './constants.js';
+import { BACKEND_URL } from './constants.js';
 
 class MainApi {
   constructor({url, headers}) {
@@ -107,7 +107,7 @@ class MainApi {
 //// экзмпляр апи
 const mainApi = new MainApi({
   // url:"http://localhost:3000", // ссылка на бэкенд
-  url: BASE_URL,
+  url: BACKEND_URL,
   headers: {
     "Content-type": 'application/json'
   }

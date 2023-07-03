@@ -1,5 +1,5 @@
 export const MOVIES_API_URL = ' https://api.nomoreparties.co/beatfilm-movies';
-export const BASE_URL = 'https://alenanik.nomoredomains.monster';
+export const BACKEND_URL = 'https://alenanik.nomoredomains.monster'; // backend
 
 // продолжительность короткометражки
 export const SHORT_FILM_DURATION = 40;
@@ -14,9 +14,9 @@ export const AppMessage = {
 
 // текст для ошибок
 export const Message = {
-  NOT_FOUND: 'Ничего не найдено',
-  CANT_SAVE: 'Не получилось сохранить фильм',
-  CANT_DELETE: 'Не получилось удалить фильм',
+  NOT_FOUND: 'Ничего не найдено.',
+  CANT_SAVE: 'Не получилось сохранить фильм.',
+  CANT_DELETE: 'Не получилось удалить фильм.',
   REQUEST_ERROR: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
 }
 
