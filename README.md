@@ -7,4 +7,6 @@
 https://drive.google.com/file/d/13kAi1Z048B5xQ4YUbBw4fP71EkQ2LKL0/view?usp=drive_link
 
 
+Ссылка на фронтенд-часть проекта https://bynikitina.nomoredomains.monster/
+
 Ссылка на пул реквест  https://github.com/AlenaNikitiina/movies-explorer-frontend/pull/2
