@@ -60,7 +60,7 @@ export default function Register({ handleRegister }) {
             required
             minLength={4}
             maxLength={40}
-            pattern='^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$'
+            pattern='/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i'
             value={values.email || ''}
             onChange={handleChange}
           />
