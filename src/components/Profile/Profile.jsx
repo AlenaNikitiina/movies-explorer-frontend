@@ -90,7 +90,6 @@ export default function Profile({ onSignOut, onOverlayClick }) {
             maxLength={30}
             placeholder='Имя'
             name='name'
-            pattern='[a-zA-Za-яА-Я -]{2,30}'
             value={values.name || ''}
             onChange={handleChange}
             //disabled={renderLoading || !isEdit}
@@ -107,7 +106,6 @@ export default function Profile({ onSignOut, onOverlayClick }) {
             required
             minLength={4}
             maxLength={40}
-            pattern='^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$'
             placeholder='pochta@yandex.ru'
             name='email'
             value={values.email || ''}

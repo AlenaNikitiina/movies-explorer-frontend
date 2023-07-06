@@ -43,7 +43,6 @@ export default function Register({ handleRegister }) {
             required
             minLength={2}
             maxLength={30}
-            pattern='^[а-яА-ЯёЁa-zA-Z0-9]+$'
             value={values.name || ''}
             onChange={handleChange}
           />
@@ -60,7 +59,6 @@ export default function Register({ handleRegister }) {
             required
             minLength={4}
             maxLength={40}
-            pattern='/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
             value={values.email || ''}
             onChange={handleChange}
           />
