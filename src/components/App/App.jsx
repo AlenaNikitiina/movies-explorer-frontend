@@ -42,7 +42,8 @@ export default function App() {
           navigate('/movies');
         }
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err)
         setRegistrationForm({
           status: false,
           text: AppMessage.UNSUCCESS,

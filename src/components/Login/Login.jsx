@@ -41,7 +41,7 @@ export default function Login({ handleLogin }) {
             required
             minLength={4}
             maxLength={40}
-            //pattern=''
+            pattern='/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
             value={values.email || ''}
             onChange={handleChange}
           />
@@ -58,7 +58,6 @@ export default function Login({ handleLogin }) {
             required
             minLength={2}
             maxLength={30}
-            pattern='[A-Za-z0-9]{2,30}'
             value={values.password || ''}
             onChange={handleChange}
           />
