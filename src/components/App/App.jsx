@@ -59,6 +59,7 @@ export default function App() {
     mainApi.login(email, password)
       .then((data) => {
         localStorage.setItem("jwt", data.token); // если ок то добавь в localStorage
+        mainApi.setAuthToken(data.token);
         setLoggedIn(true); // залогинь
         navigate('/movies', {replace : true} );
       })
@@ -110,13 +111,12 @@ export default function App() {
 
   // Кнопка выйти из профиля / разлогиниться
   function signOut() {
-    console.log('signOut');
-    localStorage.removeItem('jwt'); // удалить
     setLoggedIn(false); // разлогинить
     setCurrentUser({}); //
     setSavedMovies([]); // сохранен фильмы пустые
     navigate('/');
-    localStorage.clear(); // все удалить из
+    mainApi.setAuthToken('');
+    localStorage.clear(); // все удалить из локального хранилища
   };
 
   // Клик на оверлэй, вне формы
