@@ -86,7 +86,7 @@ export default function App() {
           // checkToken заодно выдаёт информацию о нашем пользователе - сохраним её
           setCurrentUser(res);
           mainApi.setAuthToken(jwt);
-          navigate("/", {replace: true}) // перенаправьте
+          navigate("/movies", {replace: true}) // перенаправьте
         }
       })
       .catch((err) => {
