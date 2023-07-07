@@ -39,7 +39,7 @@ export default function App() {
           })
           setIsInfoTooltip(true);
           handleLogin(email, password);
-          navigate('/movies');
+          navigate('/movies', {replace : true} );
         }
       })
       .catch((err) => {
@@ -116,6 +116,7 @@ export default function App() {
     setCurrentUser({}); //
     setSavedMovies([]); // сохранен фильмы пустые
     navigate('/');
+    localStorage.clear(); // все удалить из
   };
 
   // Клик на оверлэй, вне формы

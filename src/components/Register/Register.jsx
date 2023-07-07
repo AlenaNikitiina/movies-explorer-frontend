@@ -64,7 +64,7 @@ export default function Register({ handleRegister }) {
           />
           <span className='register__error email-error' id='email-error'>{errors.email}</span>
         </label>
-
+        
         <label className='register__label' htmlFor='password'>Пароль
           <input
             className='register__input'

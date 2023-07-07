@@ -59,4 +59,13 @@ export function useForm() {
 
   return {values, handleChange, setValues};
 }
+
+тогда проверяй при вводе
+` const isValidEmail = emailRegexp.test(value);
+
+
+  setErrors(errors => ({
+    ...errors,
+    [name]: isValidEmail ? '' : 'message',
+  }));
 */
