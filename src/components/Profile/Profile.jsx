@@ -1,5 +1,5 @@
 import './Profile.css';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import Preloader from '../Preloader/Preloader';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
@@ -10,10 +10,17 @@ export default function Profile({ onSignOut, onOverlayClick }) {
   // задаём контекст, чтобы извлечь из него глобальные переменные
   const currentContext = useContext(CurrentUserContext);
   const [currentUser, setCurrentUser] = useState(currentContext.currentUser);
-  const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
+  const initialValues = {
+    username: currentUser.name,
+    email: currentUser.email,
+  };
+  const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation(initialValues);
 
   const [isEdit, setIsEdit] = useState(false); // редактируем инфу о себе
   const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
+  const [isInfoTooltip, setIsInfoTooltip] = useState(false); // popup Информационная подсказка
+  const [registrationForm, setRegistrationForm] = useState({ status: false, text: "" }); // текст для Информ подсказки
+  const nameInputRef = useRef(false);
 
   // Обработчик изменения данных пользователя. имя, почта.
   function onUpdateUser(name, email) {
@@ -22,9 +29,19 @@ export default function Profile({ onSignOut, onOverlayClick }) {
       .editingProfile(name, email)
       .then ((newUserData) => {
         setCurrentUser(newUserData); // обновили
+        setRegistrationForm({
+          status: true,
+          text: AppMessage.SUCCESS,
+        })
+        setIsInfoTooltip(true);
       })
       .catch(err => {
         console.log(AppMessage.UPDATE_ERR, err);
+        setRegistrationForm({
+          status: false,
+          text: AppMessage.UNSUCCESS,
+        })
+        setIsInfoTooltip(true);
       })
       .finally(() => {
         setRenderLoading(false);
@@ -49,17 +66,22 @@ export default function Profile({ onSignOut, onOverlayClick }) {
   // Редактировать профиль
   function handleEditButton(evt) {
     evt.preventDefault();
-    
+
     setIsEdit(true);
+    nameInputRef.current.focus();
+    /*
     onUpdateUser(
       values.name,
       values.email
     );
+    */
   };
 
   const isButtonActive = isFormValid
   && !renderLoading
-  && (values.name !== values.username || values.email !== values.email);
+  && (values.name !== initialValues.username || values.email !== initialValues.email);
+
+//  const isButtonActive = false;
 
   //
   useEffect(() => {
@@ -75,7 +97,7 @@ export default function Profile({ onSignOut, onOverlayClick }) {
       <form
         className='profile__form'
         onSubmit={handleSubmit}
-        //renderLoading={renderLoading}
+        renderLoading={renderLoading}
         isFormValid={isFormValid}
         onClick={onOverlayClick}
       >
@@ -85,6 +107,7 @@ export default function Profile({ onSignOut, onOverlayClick }) {
             className='profile__input'
             type='text'
             id='name'
+            ref={nameInputRef}
             required
             minLength={2}
             maxLength={30}
@@ -92,7 +115,7 @@ export default function Profile({ onSignOut, onOverlayClick }) {
             name='name'
             value={values.name || ''}
             onChange={handleChange}
-            //disabled={renderLoading || !isEdit}
+            disabled={renderLoading || !isEdit}
           />
         </div>
         <span className='profile__error name-error' id='name-error'>{errors.name}</span>
@@ -110,7 +133,7 @@ export default function Profile({ onSignOut, onOverlayClick }) {
             name='email'
             value={values.email || ''}
             onChange={handleChange}
-            //disabled={renderLoading || !isEdit}
+            disabled={renderLoading || !isEdit}
           />
         </div>
         {renderLoading ? <Preloader /> : ''}
