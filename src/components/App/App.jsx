@@ -40,6 +40,10 @@ export default function App() {
           setIsInfoTooltip(true);
           handleLogin(email, password);
           navigate('/movies', {replace : true} );
+          setTimeout(() => {
+            setIsInfoTooltip(false);
+            setRenderLoading(false);
+          }, 2000);
         }
       })
       .catch((err) => {
@@ -69,6 +73,10 @@ export default function App() {
         mainApi.setAuthToken(data.token);
         setLoggedIn(true); // залогинь
         navigate('/movies', {replace : true} );
+        setTimeout(() => {
+          setIsInfoTooltip(false);
+          setRenderLoading(false);
+        }, 2000);
       })
       .catch(() => {
         setRegistrationForm({
