@@ -100,8 +100,6 @@ export default function Profile({
       <form
         className='profile__form'
         onSubmit={handleSubmit}
-        renderLoading={renderLoading}
-        isFormValid={isFormValid}
         onClick={onOverlayClick}
       >
         <div className='profile__cell'>
