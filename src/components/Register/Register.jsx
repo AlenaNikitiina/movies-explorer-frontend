@@ -1,22 +1,18 @@
 import './Register.css';
-import { useState } from 'react';
 import Preloader from '../Preloader/Preloader';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
-export default function Register({ handleRegister }) {
-  const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
+export default function Register({ handleRegister, renderLoading }) {
   const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    
     handleRegister(
       values.name,
       values.email,
       values.password
     );
-    setRenderLoading(true);
     resetForm();
   }
 

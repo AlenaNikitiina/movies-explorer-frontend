@@ -49,8 +49,15 @@ export default function App() {
           text: AppMessage.UNSUCCESS,
         });
         setIsInfoTooltip(true);
+        // потом подсказки исчезнут
+        setTimeout(() => {
+          setIsInfoTooltip(false);
+          setRenderLoading(false);
+        }, 2000);
       })
-      .finally(() => setRenderLoading(false));
+      .finally(() => {
+        setRenderLoading(false);
+      });
   };
 
   // Авторизация, в компоненте Login
@@ -69,6 +76,11 @@ export default function App() {
           text: AppMessage.UNSUCCESS,
         })
         setIsInfoTooltip(true);
+        // потом подсказки исчезнут
+        setTimeout(() => {
+          setIsInfoTooltip(false);
+          setRenderLoading(false);
+        }, 2000);
       })
       .finally(() => setRenderLoading(false));
   };
@@ -188,9 +200,8 @@ export default function App() {
               <Navigate to='/movies' />
               :
               <Register
+                renderLoading={renderLoading}
                 handleRegister={handleRegister}
-                registrationForm={registrationForm}
-                onOverlayClick={handleOverlayClick}
               />
             }
           />
@@ -201,8 +212,7 @@ export default function App() {
               :
               <Login
                 handleLogin={handleLogin}
-                registrationForm={registrationForm}
-                onOverlayClick={handleOverlayClick}
+                renderLoading={renderLoading}
               />
             }
           />
