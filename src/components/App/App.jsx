@@ -33,13 +33,14 @@ export default function App() {
     mainApi.register(name, email, password)
       .then((res) => {
         if (res) {
+          setIsInfoTooltip(true); // popup Информационная подсказка
           setRegistrationForm({
             status: true,
             text: AppMessage.SUCCESS,
-          })
-          setIsInfoTooltip(true);
+          });
           handleLogin(email, password);
           navigate('/movies', {replace : true} );
+          // потом подсказки исчезнут
           setTimeout(() => {
             setIsInfoTooltip(false);
             setRenderLoading(false);
@@ -196,8 +197,9 @@ export default function App() {
               />
               <Profile
                 onSignOut={signOut}
-                registrationForm={registrationForm}
                 onOverlayClick={handleOverlayClick}
+                setIsInfoTooltip={setIsInfoTooltip}
+                setRegistrationForm={setRegistrationForm}
               />
             </ProtectedRoute>
             }

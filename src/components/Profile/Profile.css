@@ -80,6 +80,12 @@
   border: none;
 }
 
+.profile__save-button:disabled {
+  color: var(--text-grey);
+  background: var(--light-grey);
+  cursor: auto;
+}
+
 .profile__edit-button {
   margin: 220px auto 0;
   padding: 0;

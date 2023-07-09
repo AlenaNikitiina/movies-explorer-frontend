@@ -8,6 +8,7 @@ export const SHORT_FILM_DURATION = 40;
 export const AppMessage = {
   SUCCESS: 'Вы успешно зарегистрировались!',
   UNSUCCESS: 'Что-то пошло не так! Попробуйте ещё раз.',
+  USER_DATA_UPDATE: 'Ваши данные обновлены!',
   TOKEN_ERR: 'Неверный токен.',
   UPDATE_ERR: "Не получилось изменить данные: ",
 }

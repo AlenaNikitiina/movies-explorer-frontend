@@ -6,7 +6,10 @@ import useFormWithValidation from '../../hook/useFormWithValidation.js';
 import mainApi from '../../utils/MainApi';
 import { AppMessage } from '../../utils/constants';
 
-export default function Profile({ onSignOut, onOverlayClick }) {
+export default function Profile({
+    onSignOut, onOverlayClick, setIsInfoTooltip, setRegistrationForm
+  }) {
+
   // задаём контекст, чтобы извлечь из него глобальные переменные
   const currentContext = useContext(CurrentUserContext);
   const [currentUser, setCurrentUser] = useState(currentContext.currentUser);
@@ -15,25 +18,28 @@ export default function Profile({ onSignOut, onOverlayClick }) {
     email: currentUser.email,
   };
   const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation(initialValues);
-
   const [isEdit, setIsEdit] = useState(false); // редактируем инфу о себе
-  const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка
-  const [isInfoTooltip, setIsInfoTooltip] = useState(false); // popup Информационная подсказка
-  const [registrationForm, setRegistrationForm] = useState({ status: false, text: "" }); // текст для Информ подсказки
+  const [renderLoading, setRenderLoading] = useState(false);
   const nameInputRef = useRef(false);
 
   // Обработчик изменения данных пользователя. имя, почта.
   function onUpdateUser(name, email) {
+  //const onUpdateUser = (name, email) => {
     setRenderLoading(true);
     mainApi
       .editingProfile(name, email)
       .then ((newUserData) => {
         setCurrentUser(newUserData); // обновили
+        setIsInfoTooltip(true); // Информационная подсказка
         setRegistrationForm({
           status: true,
-          text: AppMessage.SUCCESS,
+          text: AppMessage.USER_DATA_UPDATE,
         })
-        setIsInfoTooltip(true);
+        // потом подсказки исчезнут
+        setTimeout(() => {
+          setIsInfoTooltip(false);
+          setRenderLoading(false);
+        }, 2000);
       })
       .catch(err => {
         console.log(AppMessage.UPDATE_ERR, err);
@@ -42,6 +48,11 @@ export default function Profile({ onSignOut, onOverlayClick }) {
           text: AppMessage.UNSUCCESS,
         })
         setIsInfoTooltip(true);
+        // потом подсказки исчезнут
+        setTimeout(() => {
+          setIsInfoTooltip(false);
+          setRenderLoading(false);
+        }, 2000);
       })
       .finally(() => {
         setRenderLoading(false);
@@ -69,12 +80,6 @@ export default function Profile({ onSignOut, onOverlayClick }) {
 
     setIsEdit(true);
     nameInputRef.current.focus();
-    /*
-    onUpdateUser(
-      values.name,
-      values.email
-    );
-    */
   };
 
   const isButtonActive = isFormValid
@@ -136,7 +141,7 @@ export default function Profile({ onSignOut, onOverlayClick }) {
             disabled={renderLoading || !isEdit}
           />
         </div>
-        {renderLoading ? <Preloader /> : ''}
+       
         <span className='profile__error email-error' id='email-error'>{errors.email}</span>
 
         {isEdit ?
@@ -148,6 +153,7 @@ export default function Profile({ onSignOut, onOverlayClick }) {
           <button type='button' className='profile__link button' onClick={onSignOut}>Выйти из аккаунта</button>
           : ''
         }
+        {renderLoading ? <Preloader /> : ''}
       </form>
     </section>
   )
