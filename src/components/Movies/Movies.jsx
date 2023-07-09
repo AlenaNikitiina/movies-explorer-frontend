@@ -79,7 +79,7 @@ export default function Movies () {
         showError={setErrorMessage}
       />
       {renderLoading ? <Preloader /> : ''} 
-      <MoviesCardList movies={searchedMovies} />
+      {errorMessage.length!==0 ? <p className='cards__search-message'>{errorMessage}</p> : <MoviesCardList movies={searchedMovies} />}
     </main>
   )
 }
