@@ -8,13 +8,15 @@ export default function Login({ handleLogin, renderLoading }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    
+
+    const resetFormCallBack = () => {
+      resetForm();
+    }
     handleLogin(
       values.email,
-      values.password
+      values.password,
+      resetFormCallBack
     );
-//    setRenderLoading(true);
-    resetForm();
   };
 
   return(

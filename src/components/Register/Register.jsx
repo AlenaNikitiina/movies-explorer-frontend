@@ -8,12 +8,15 @@ export default function Register({ handleRegister, renderLoading }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    const resetFormCallBack = () => {
+      resetForm();
+    };
     handleRegister(
       values.name,
       values.email,
-      values.password
+      values.password,
+      resetFormCallBack
     );
-    resetForm();
   }
 
   return(

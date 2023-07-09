@@ -86,8 +86,6 @@ export default function Profile({
   && !renderLoading
   && (values.name !== initialValues.username || values.email !== initialValues.email);
 
-//  const isButtonActive = false;
-
   //
   useEffect(() => {
     if (currentUser) {

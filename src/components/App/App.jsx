@@ -28,7 +28,7 @@ export default function App() {
   const navigate = useNavigate();
 
   // Регистрация, в компоненте Register и как прошла ?
-  const handleRegister = (name, email, password) => {
+  const handleRegister = (name, email, password, resetFormCallBack) => {
     setRenderLoading(true);
     mainApi.register(name, email, password)
       .then((res) => {
@@ -38,7 +38,8 @@ export default function App() {
             status: true,
             text: AppMessage.SUCCESS,
           });
-          handleLogin(email, password);
+          resetFormCallBack(); // сброс полей формы
+          handleLogin(email, password, resetFormCallBack);
           navigate('/movies', {replace : true} );
           // потом подсказки исчезнут
           setTimeout(() => {
@@ -66,12 +67,13 @@ export default function App() {
   };
 
   // Авторизация, в компоненте Login
-  const handleLogin = (email, password) => {
+  const handleLogin = (email, password, resetFormCallBack) => {
     setRenderLoading(true);
     mainApi.login(email, password)
       .then((data) => {
         localStorage.setItem("jwt", data.token); // если ок то добавь в localStorage
         mainApi.setAuthToken(data.token);
+        resetFormCallBack();
         setLoggedIn(true); // залогинь
         navigate('/movies', {replace : true} );
         setTimeout(() => {
