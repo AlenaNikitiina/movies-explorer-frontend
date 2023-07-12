@@ -109,7 +109,6 @@ export default function App() {
           // checkToken заодно выдаёт информацию о нашем пользователе - сохраним её
           setCurrentUser(res);
           mainApi.setAuthToken(jwt);
-          navigate("/movies", {replace: true}) // перенаправьте
         }
       })
       .catch((err) => {
@@ -122,9 +121,10 @@ export default function App() {
   useEffect(() => {
     checkToken();
     if (loggedIn) {
-      mainApi.getSavedMovies()
-      .then((res) => {
+      Promise.all([mainApi.getSavedMovies()])
+      .then(([res]) => {
         setSavedMovies(res);
+        navigate("/movies", {replace: true}) // перенаправьте
       })
       .catch((err) => {
       })

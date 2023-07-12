@@ -51,7 +51,7 @@ export default function Register({ handleRegister, renderLoading }) {
         <label className='register__label' htmlFor='email'>E-mail
           <input
             className='register__input'
-            type='email'
+            type="email"
             name='email'
             id='email'
             placeholder="Электронная почта"
