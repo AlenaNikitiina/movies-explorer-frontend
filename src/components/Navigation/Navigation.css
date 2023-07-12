@@ -1,0 +1,108 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+}
+
+.navigation__link {
+  margin-right: 20px;
+  line-height: 18px;
+  letter-spacing: 0em;
+}
+
+.navigation__link_active {
+  font-weight: 500;
+  margin-right: 20px;
+  line-height: 18px;
+  letter-spacing: 0em;
+}
+
+.navigation__link:last-of-type,
+.navigation__link_active:last-of-type {
+  margin-right: 0;
+}
+
+.navigation__account-link {
+  margin-left: 30px;
+  width: 100px;
+  padding: 8px 10px 8px 28px;
+  background-color: transparent;
+  background-image: url(../../images/account_button.svg);
+  background-position: 12% 50%;
+  background-repeat: no-repeat;
+  background-size: 12px 14px;
+  border: 2px solid var(--light-grey);
+  border-radius: 20px;
+  text-align: right;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+/**/
+.navigation__auth {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.navigation__auth-item {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+.navigation__auth-item_active {
+  padding: 8px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  max-width: 76px;
+  transition: opacity .3s linear;
+}
+
+.navigation__burger-btn {
+  background: none;
+  background-image: url('../../images/burger.svg');
+  width: 44px;
+  height: 44px;
+  border: none;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__content,
+  .navigation__account-link {
+    display: none;
+  }
+  .navigation__burger-btn {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .navigation__link {
+    margin-right: 14px;
+  }
+  .navigation-links {
+    gap: 14px;
+  }
+  .navigation__auth-item {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+  }
+  .navigation__auth-item_active {
+    padding: 5px 12px;
+  }
+}

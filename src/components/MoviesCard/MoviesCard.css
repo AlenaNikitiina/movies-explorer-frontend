@@ -1,0 +1,91 @@
+.card__element {
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0px 4px 30px 0px #00000014;
+  width: 100%;
+  height: fit-content;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.card__title {
+  margin: 0;
+  max-width: 180px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card__duration {
+  margin: 0;
+  max-width: 70px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: var(--text-grey);
+}
+
+.card__photo {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+/* кнопки сохранить, сохранено, удалить */
+.card__save-btn {
+  width: 100px;
+  height: 29px;
+  border-radius: 30px;
+  border: none;
+  background-color: var(--movie-grey);
+  background: url(../../images/save_btn.svg) no-repeat;
+  margin: 18px auto;
+}
+
+.card__saved-btn {
+  width: 100px;
+  height: 29px;
+  border-radius: 30px;
+  border: none;
+  background: url(../../images/saved_btn.svg) no-repeat;
+  margin: 18px auto;
+}
+
+.card__delete-btn {
+  width: 100px;
+  height: 29px;
+  border-radius: 30px;
+  border: none;
+  background: url(../../images/delete_btn.svg) no-repeat;
+  margin: 18px auto;
+}
+
+@media screen and (max-width: 425px) {
+  .card__title {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+  }
+  .card__duration {
+    font-size: 10px;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: right;
+  }
+
+}

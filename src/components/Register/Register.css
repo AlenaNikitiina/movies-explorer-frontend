@@ -1,0 +1,40 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  max-width: 396px;
+}
+
+.register__label {
+  padding: 12px 0 12px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.register__input {
+  width: 100%;
+  padding: 5px 0 10px;
+  margin-bottom: 5px;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.register__input:focus {
+  outline-color: var(--preview-color);
+}
+
+.register__error {
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--scarlet);
+}
