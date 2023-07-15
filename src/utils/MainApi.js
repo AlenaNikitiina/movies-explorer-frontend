@@ -53,13 +53,13 @@ class MainApi {
   
   // Авторизация
   login (email, password) {
-  return fetch(`${this._url}/signin`, {
-    method: "POST",
-    headers: {
-      ...this._headers,
+    return fetch(`${this._url}/signin`, {
+      method: "POST",
+      headers: {
+        ...this._headers,
       Accept: "application/json",
     },
-    body: JSON.stringify( {email, password} ),
+      body: JSON.stringify( {email, password} ),
   })
   .then(this._checkServerAnswer);
   };
@@ -72,6 +72,14 @@ class MainApi {
         ...this._headers,
         Authorization: `Bearer ${token}`,
       },
+    })
+    .then(this._checkServerAnswer);
+  };
+
+  // информация о пользователе
+  getUserInfo() {
+    return fetch(`${this._url}/users/me`, {
+      headers: this._headers,
     })
     .then(this._checkServerAnswer);
   };

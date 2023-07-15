@@ -19,7 +19,8 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { AppMessage } from '../../utils/constants';
 
 export default function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  //const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(null);
   const [currentUser, setCurrentUser] = useState({}); // переменную состояния currentUser
   const [renderLoading, setRenderLoading] = useState(false); // идет сохранение/ загрузка. Loader
   const [isInfoTooltip, setIsInfoTooltip] = useState(false); // popup Информационная подсказка
@@ -96,41 +97,38 @@ export default function App() {
       .finally(() => setRenderLoading(false));
   };
 
-  // Проверка токена. если есть токен в localStorage,то проверим валидность токена
-  function checkToken() {
-    // jwt это наш токен 
-    const jwt = localStorage.getItem('jwt')
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    // Проверка токена. если есть токен в localStorage,то проверим валидность токена
     if (jwt) {
       mainApi
-      .checkToken(jwt)
-      .then((res) => {
-        if (res) {
-          setLoggedIn(true); // авторизуем пользователя
-          // checkToken заодно выдаёт информацию о нашем пользователе - сохраним её
+        .checkToken(jwt)
+        .then((res) => {
           setCurrentUser(res);
-          mainApi.setAuthToken(jwt);
-        }
-      })
-      .catch((err) => {
-        console.log(AppMessage.TOKEN_ERR, err);
-      })
-    }
-  };
+          setLoggedIn(true);
+        })
+        .catch((err) => {
+          console.log(AppMessage.TOKEN_ERR, err);
+          signOut();
+        });
+    } else
+      setLoggedIn(false);
+  }, [navigate]);
 
   //
   useEffect(() => {
-    checkToken();
     if (loggedIn) {
-      Promise.all([mainApi.getSavedMovies()])
-      .then(([res]) => {
-        setSavedMovies(res);
-        navigate("/movies", {replace: true}) // перенаправьте
+      Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
+      .then(([user, movies]) => {
+        setCurrentUser(user);
+        setSavedMovies(movies);
       })
       .catch((err) => {
       })
     }
   }, [loggedIn] ); // ток один раз при первом рендеринге
   // или написать loggedIn
+
 
   // Кнопка выйти из профиля / разлогиниться
   function signOut() {
