@@ -4,13 +4,15 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormWithValidation from '../../hook/useFormWithValidation.js';
 
 export default function Register({ handleRegister, renderLoading }) {
-  const { handleChange, values, errors, isFormValid, resetForm } = useFormWithValidation();
+  const { values, handleChange, errors, isFormValid, resetForm } = useFormWithValidation();
 
   function handleSubmit(evt) {
     evt.preventDefault();
+
     const resetFormCallBack = () => {
       resetForm();
     };
+
     handleRegister(
       values.name,
       values.email,
@@ -56,8 +58,10 @@ export default function Register({ handleRegister, renderLoading }) {
             id='email'
             placeholder="Электронная почта"
             required
-            minLength={4}
+            minLength={5}
             maxLength={40}
+            //pattern='^[-a-z0-9!#$%&*+/=?^_`{|}~]+(?:\.[-a-z0-9!#$%&*+/=?^_`{|}~]+)*@(?:[a-z0-9](?:[-a-z0-9]*[a-z0-9])?\.)+[a-z0-9]{2,4}?$'
+            pattern='[a-z0-9]+@[a-z]+\.[a-z]{2,3}'
             value={values.email || ''}
             onChange={handleChange}
           />
@@ -84,3 +88,18 @@ export default function Register({ handleRegister, renderLoading }) {
     </PopupWithForm>
   )
 }
+
+  /*
+    //const  [email, setEmail] = useState();
+  //const  [ errorMessageName, setErrorMessageName] = useState();
+ 
+  const nameHandler = (evt) => {
+    setEmail(evt.target.value)
+    const pattern = /^[A-Za-zА-Яа-яЁё /s -]{4,}/ 
+    if (!pattern.test(String(evt.target.value).toLocaleLowerCase())) {
+       setErrorMessageName("Неккоректное имя") 
+      } else { setErrorMessageName("") } 
+  }
+
+  onChange={e => nameHandler(e)}
+  */
