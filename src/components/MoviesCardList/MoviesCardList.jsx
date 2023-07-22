@@ -7,8 +7,6 @@ import './MoviesCardList.css';
 
 export default function MoviesCardList({ movies }) {
   const { pathname } = useLocation();
-  //const currentContext = useContext(CurrentUserContext);
-  //const [savedMovies, setsavedMovies] = useState(currentContext.savedMovies);
   const { savedMovies } = useContext(CurrentUserContext);
   const [cardsCountToShow, setCardsCountToShow] = useState(0);
   const [isMoreButton, setIsMoreButton] = useState(false);

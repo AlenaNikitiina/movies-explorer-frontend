@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 import './App.css';
 import Header from '../Header/Header';
@@ -27,6 +27,7 @@ export default function App() {
   const [registrationForm, setRegistrationForm] = useState({ status: false, text: "" }); // текст для Информ подсказки
   const [savedMovies, setSavedMovies] = useState([]);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   // Регистрация, в компоненте Register и как прошла ?
   const handleRegister = (name, email, password, resetFormCallBack) => {
@@ -97,24 +98,6 @@ export default function App() {
       .finally(() => setRenderLoading(false));
   };
 
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    // Проверка токена. если есть токен в localStorage,то проверим валидность токена
-    if (jwt) {
-      mainApi
-        .checkToken(jwt)
-        .then((res) => {
-          setCurrentUser(res);
-          setLoggedIn(true);
-        })
-        .catch((err) => {
-          console.log(AppMessage.TOKEN_ERR, err);
-          signOut();
-        });
-    } else
-      setLoggedIn(false);
-  }, [navigate]);
-
   //
   useEffect(() => {
     if (loggedIn) {
@@ -124,10 +107,30 @@ export default function App() {
         setSavedMovies(movies);
       })
       .catch((err) => {
+        console.log (err);
       })
+      .finally(() => { console.log("loggedIn::finally") });
     }
   }, [loggedIn] ); // ток один раз при первом рендеринге
   // или написать loggedIn
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    // Проверка токена. если есть токен в localStorage,то проверим валидность токена
+    if (jwt) {
+      mainApi
+        .checkToken(jwt)
+        .then((res) => {
+          setLoggedIn(true);
+          setCurrentUser(res);
+        })
+        .catch((err) => {
+          console.log(AppMessage.TOKEN_ERR, err);
+          signOut();
+        });
+    } else
+      setLoggedIn(false);
+  }, [navigate]);
 
 
   // Кнопка выйти из профиля / разлогиниться

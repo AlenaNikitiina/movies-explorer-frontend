@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import { filterMovies } from '../../utils/filterMovies';
 import moviesApi from '../../utils/MoviesApi';
 import { Message } from '../../utils/constants';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function Movies () {
   const [keyWordState, setKeyWordState] = useState('');
@@ -13,6 +14,7 @@ export default function Movies () {
   const [searchedMovies, setSearchedMovies] = useState([]);
   const storageAllMovies = JSON.parse(localStorage.getItem('storageAllMovies')) || [];
   const [errorMessage, setErrorMessage] = useState('');
+  const { savedMovies }= useContext(CurrentUserContext);
 
   useEffect(() => {
     // извлекаем сохраннёное состояния из локального хранилища
@@ -56,6 +58,11 @@ export default function Movies () {
       setupFilteredFilms(filteredMovies);
     }
   };
+
+  useEffect(() => {
+    getFilteredMovies(keyWordState, isShortMoviesState);
+   }, [savedMovies]
+  );
 
   const handleSubmitSearch = (keyWord) => {
     setKeyWordState(keyWord);
