@@ -41,6 +41,7 @@ export default function Login({ handleLogin, renderLoading }) {
             required
             minLength={4}
             maxLength={40}
+            pattern='[a-z0-9]+@[a-z]+\.[a-z]{2,3}'
             value={values.email || ''}
             onChange={handleChange}
           />
