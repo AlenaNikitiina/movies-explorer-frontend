@@ -15,8 +15,8 @@ https://drive.google.com/file/d/13kAi1Z048B5xQ4YUbBw4fP71EkQ2LKL0/view?usp=drive
 
 ## Запуск
 
-git clone https://github.com/elrouss/movies-explorer-frontend.git - клонировать репозиторий на свое устройство (HTTPS)
-Для начала необходимо запустить бэкенд https://github.com/sofiapeshekhonova/movies-explorer-api на 3000 порту
+git clone  - клонировать репозиторий на свое устройство (HTTPS)
+Для начала необходимо запустить бэкенд https:/ на 3000 порту
 Перейти в папку
 npm i - Скачать зависимости
 npm start - запустить приложение
