@@ -8,6 +8,9 @@
 Ссылка на макет в Figma [Посмотреть](https://www.figma.com/file/Igj4Syj1ogZxZ3lyOxwT1L/Diploma-(Copy)?type=design&node-id=891-3857)
 Чек-лист:  [Посмотреть](https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/checklist_react_diplom.pdf)
 
+![Image](https://github.com/AlenaNikitiina/movies-explorer-frontend/raw/main/diplomaone.png)
+![Image](https://github.com/AlenaNikitiina/movies-explorer-frontend/raw/main/diplomatwo.png)
+
 
 ## Стек технологий
 <span>
@@ -33,7 +36,7 @@
 - Добавление/удаление фильма из избранного в личным кабинете
 - Валидация полей формы (сообщения об ошибке, декактивация кнопок в сабмите) 
 
-✔️- Сайт является адаптивно-отзывчивым. Адаптирован под экраны с шириной 320 и 1280 пикселей (медиазапросы и резиновая верстка)
-✔️- БЭМ-подход. Организация файловой структуры Nested
-✔️- Использвуются Flexbox и Grid верстка
-✔️- React-хуки
+-✔️ Сайт является адаптивно-отзывчивым. Адаптирован под экраны с шириной 320 и 1280 пикселей (медиазапросы и резиновая верстка)
+-✔️ БЭМ-подход. Организация файловой структуры Nested
+-✔️ Использвуются Flexbox и Grid верстка
+-✔️ React-хуки
